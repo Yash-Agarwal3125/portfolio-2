@@ -19,7 +19,6 @@
 
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">Yash Agarwal</a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#work">Work</a>
       <a href="#philosophy">Philosophy</a>
@@ -35,7 +34,7 @@
   <section class="hero">
     <div class="hero-gradient" aria-hidden="true"></div>
     <div class="hero-inner">
-      <h1 class="hero-name">Yash Agarwal</h1>
+      <h1 class="hero-name" id="hero-name" role="button" tabindex="0" aria-label="Back to top">Yash Agarwal</h1>
       <p class="hero-headline">Building reliable software for real-world problems.</p>
       <ul class="role-tags">
         <li>Software Engineer</li>
@@ -57,10 +56,13 @@
       <div class="case-study">
         <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-1" id="cs-summary-1">
           <span class="cs-summary-content">
+            <span class="cs-index">01 / 05</span>
             <h3>Distributed AI Inference Platform</h3>
-            <p class="cs-impact"><span data-todo>[CHECK GITHUB: repo not publicly reachable as of this build — confirm current state before stating finished-system numbers]</span></p>
+            <p class="cs-desc">Distributed ML-serving infrastructure simulation — API gateway, message queue, Redis caching layer, Postgres, Nginx reverse proxy, full observability via Prometheus/Grafana dashboards, load-tested with Locust, containerized via Docker Compose.</p>
+            <p class="cs-status">Currently early-stage — core architecture and services scaffolded, scheduler/worker/context-manager components are in active development.</p>
+            <p class="cs-impact"><span data-todo>[TODO: finished-system metrics once scheduler/worker implementation is complete — do not use resume's 50 req/sec, 50ms p99 figures until that's verified against the actual repo state]</span></p>
             <ul class="tech-tags">
-              <li>Kafka</li><li>FastAPI</li><li>Redis</li><li>Docker</li><li>Prometheus</li>
+              <li>FastAPI</li><li>Redpanda/Kafka</li><li>Redis</li><li>PostgreSQL</li><li>Nginx</li><li>Prometheus</li><li>Grafana</li><li>Docker</li><li>Locust</li>
             </ul>
           </span>
           <span class="cs-expand" aria-hidden="true">Expand <span class="cs-arrow">→</span></span>
@@ -72,13 +74,13 @@
                 <h4>Problem</h4>
                 <p><span data-todo>[TODO]</span></p>
                 <h4>Architecture</h4>
-                <p>Building a distributed AI inference platform across 12 planned microservices — FastAPI + Redis async queuing, Kafka task routing, Prometheus/Grafana observability. Currently mid-build.</p>
+                <p>Distributed ML-serving infrastructure simulation — API gateway, message queue, Redis caching layer, Postgres, Nginx reverse proxy, full observability via Prometheus/Grafana dashboards, load-tested with Locust, containerized via Docker Compose.</p>
                 <h4>Challenges</h4>
                 <p><span data-todo>[TODO]</span></p>
                 <h4>Solution</h4>
-                <p><span data-todo>[TODO]</span></p>
+                <p>Currently early-stage — core architecture and services scaffolded, scheduler/worker/context-manager components are in active development.</p>
                 <h4>Results</h4>
-                <p><span data-todo>[TODO: real numbers — do not state finished-system throughput/latency until confirmed against the repo]</span></p>
+                <p><span data-todo>[TODO: finished-system metrics once scheduler/worker implementation is complete — do not use resume's 50 req/sec, 50ms p99 figures until that's verified against the actual repo state]</span></p>
                 <h4>Lessons Learned</h4>
                 <p><span data-todo>[TODO]</span></p>
               </div>
@@ -93,10 +95,13 @@
       <div class="case-study">
         <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-2" id="cs-summary-2">
           <span class="cs-summary-content">
-            <h3>IPL-Bhai-Log</h3>
-            <p class="cs-impact"><span data-todo>[CHECK GITHUB: repo not publicly reachable as of this build — e.g. concurrent users, bets processed]</span></p>
+            <span class="cs-index">02 / 05</span>
+            <h3>Distributed Sports Prediction &amp; Wagering Platform</h3>
+            <p class="cs-desc">Full-stack event prediction platform — FastAPI backend, React/Vite frontend, SQLAlchemy + Alembic migrations. Automated live match ingestion, async bet processing, and leaderboard computation via APScheduler. ACID-compliant transactional workflows using row-level locking (SELECT...FOR UPDATE) to prevent race conditions during concurrent wallet updates, JWT authentication, bcrypt hashing, and API rate limiting. Security-focused build — a dedicated test suite is required to pass before any commit is merged.</p>
+            <p class="cs-status">Deployment-ready, final hosting pending.</p>
+            <p class="cs-impact"><span data-todo>[TODO: concurrent users / bets processed — no usage data exists yet]</span></p>
             <ul class="tech-tags">
-              <li>FastAPI</li><li>React</li><li>MySQL</li><li>JWT</li>
+              <li>FastAPI</li><li>React</li><li>MySQL</li><li>SQLAlchemy</li><li>JWT</li><li>Alembic</li><li>APScheduler</li>
             </ul>
           </span>
           <span class="cs-expand" aria-hidden="true">Expand <span class="cs-arrow">→</span></span>
@@ -108,13 +113,13 @@
                 <h4>Problem</h4>
                 <p><span data-todo>[TODO]</span></p>
                 <h4>Architecture</h4>
-                <p>Distributed sports prediction and wagering platform. Automated live match ingestion, async bet processing, and leaderboard computation via FastAPI, React, MySQL, and APScheduler, reducing manual intervention through scheduled data sync. Scalable REST architecture with React Query caching, Zustand state management, and Alembic migrations.</p>
+                <p>Full-stack event prediction platform — FastAPI backend, React/Vite frontend, SQLAlchemy + Alembic migrations. Automated live match ingestion, async bet processing, and leaderboard computation via APScheduler.</p>
                 <h4>Challenges</h4>
                 <p>Keeping wallet updates consistent under concurrent bets.</p>
                 <h4>Solution</h4>
-                <p>ACID-compliant transactional workflows using SQLAlchemy row-level locking, JWT auth, bcrypt hashing, and API rate limiting to maintain consistency and mitigate race conditions during concurrent wallet updates, plus automated administrative integrity checks.</p>
+                <p>ACID-compliant transactional workflows using row-level locking (SELECT...FOR UPDATE) to prevent race conditions during concurrent wallet updates, JWT authentication, bcrypt hashing, and API rate limiting. Security-focused build — a dedicated test suite is required to pass before any commit is merged.</p>
                 <h4>Results</h4>
-                <p><span data-todo>[TODO: real numbers]</span> — deployment-ready, pending final deployment (not yet live).</p>
+                <p><span data-todo>[TODO: concurrent users / bets processed — no usage data exists yet]</span> — deployment-ready, final hosting pending.</p>
                 <h4>Lessons Learned</h4>
                 <p><span data-todo>[TODO]</span></p>
               </div>
@@ -129,7 +134,8 @@
       <div class="case-study">
         <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-3" id="cs-summary-3">
           <span class="cs-summary-content">
-            <h3>Self-Driving DQN Car</h3>
+            <span class="cs-index">03 / 05</span>
+            <h3>Autonomous Vehicle Steering Model</h3>
             <p class="cs-impact"><span data-todo>[TODO: real measured success rate over N runs — repo states no completed lap yet, do not use "98%"]</span></p>
             <ul class="tech-tags">
               <li>TensorFlow</li><li>Pygame</li><li>Deep Q-Network</li>
@@ -165,10 +171,13 @@
       <div class="case-study">
         <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-4" id="cs-summary-4">
           <span class="cs-summary-content">
-            <h3>Placement Mail Tracker</h3>
-            <p class="cs-impact"><span data-todo>[CHECK GITHUB: repo not publicly reachable as of this build — e.g. emails processed, time saved per week]</span></p>
+            <span class="cs-index">04 / 05</span>
+            <h3>Recruitment Email Intelligence Pipeline</h3>
+            <p class="cs-desc">Automated Gmail-to-Sheets placement tracking pipeline — modular architecture split across dedicated ai, extraction, gmail, notifications, reliability, scheduler, and sheets modules. Full pytest test suite, ruff linting, and a GitHub Actions CI workflow — engineering hygiene that's rare in a solo student project. Built and iterated using a structured CLAUDE.md spec for AI-assisted development.</p>
+            <p class="cs-status">The core engineering challenge is reliability — self-healing around Gmail and Gemini API flakiness, not a novel algorithm.</p>
+            <p class="cs-impact"><span data-todo>[TODO: quantified metric — e.g. emails processed, time saved per week — not yet measured]</span></p>
             <ul class="tech-tags">
-              <li>Python</li><li>Gemini API</li><li>pytest</li><li>GitHub Actions</li>
+              <li>Python</li><li>Gemini API</li><li>SQLite</li><li>Google Sheets API</li><li>pytest</li><li>GitHub Actions</li><li>ruff</li>
             </ul>
           </span>
           <span class="cs-expand" aria-hidden="true">Expand <span class="cs-arrow">→</span></span>
@@ -180,13 +189,13 @@
                 <h4>Problem</h4>
                 <p>Tracking placement and internship emails manually during recruiting season doesn't scale.</p>
                 <h4>Architecture</h4>
-                <p>Modular Python package (ai, config, db, extraction, gmail, notifications, reliability, scheduler, sheets, utils) built around the Gemini API for extraction, SQLite for storage, and the Google Sheets API for output — a real separation of concerns, not a single script.</p>
+                <p>Modular architecture split across dedicated ai, extraction, gmail, notifications, reliability, scheduler, and sheets modules, built around the Gemini API for extraction, SQLite for storage, and the Google Sheets API for output — a real separation of concerns, not a single script.</p>
                 <h4>Challenges</h4>
                 <p>The Gmail and Gemini APIs are flaky in production — rate limits, transient failures, malformed responses.</p>
                 <h4>Solution</h4>
-                <p>A dedicated reliability/self-healing layer around the Gmail and Gemini API calls — the actual differentiator here is engineering hygiene, not a novel algorithm: a pytest suite, ruff linting, a GitHub Actions CI workflow, a .env.example, a USER_MANUAL.md, and its own CLAUDE.md for AI-assisted development.</p>
+                <p>The core engineering challenge is reliability — self-healing around Gmail and Gemini API flakiness, not a novel algorithm. Full pytest test suite, ruff linting, a GitHub Actions CI workflow, and a structured CLAUDE.md spec guiding AI-assisted development.</p>
                 <h4>Results</h4>
-                <p><span data-todo>[TODO: real numbers]</span></p>
+                <p><span data-todo>[TODO: quantified metric — e.g. emails processed, time saved per week — not yet measured]</span></p>
                 <h4>Lessons Learned</h4>
                 <p><span data-todo>[TODO]</span></p>
               </div>
@@ -201,7 +210,8 @@
       <div class="case-study">
         <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-5" id="cs-summary-5">
           <span class="cs-summary-content">
-            <h3>Flight Price Predictor</h3>
+            <span class="cs-index">05 / 05</span>
+            <h3>Flight Price Prediction Engine</h3>
             <p class="cs-impact"><span data-todo>[TODO: RMSE/R² or other accuracy metric — not stated in the repo as of this build]</span></p>
             <ul class="tech-tags">
               <li>Python</li><li>NumPy</li><li>Flask</li><li>Gradient Descent</li>
@@ -237,36 +247,38 @@
     </div>
   </section>
 
+  <section class="experience reveal-section" id="experience">
+    <h2 class="section-heading">Experience</h2>
+    <ol class="timeline">
+      <li class="timeline-item">
+        <div class="timeline-date">May – July 2026</div>
+        <div class="timeline-body">
+          <h3>Data Engineering Intern — Jio Platform</h3>
+          <p>Built real-time Kafka streaming pipelines processing 50,000+ events/sec across a distributed ingestion architecture.</p>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-date">2025</div>
+        <div class="timeline-body">
+          <h3>Research Paper</h3>
+          <p>BiLSTM-Attention model for pilgrimage crowd congestion prediction, with physics-based synthetic training data and ablation study. <span data-todo>[TODO: publication venue/date if you want it linked/cited]</span></p>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-date">2023–Present</div>
+        <div class="timeline-body">
+          <h3>B.Tech CSE, AI &amp; ML Specialization — VIT Vellore</h3>
+          <p>CGPA 8.78</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
   <section class="philosophy reveal-section" id="philosophy">
     <h2 class="section-heading">Engineering Philosophy</h2>
     <div class="philosophy-body">
       <p><span data-todo>[TODO: 2-3 short paragraphs, under 150 words total, describing how you approach engineering work.]</span></p>
     </div>
-  </section>
-
-  <section class="experience reveal-section" id="experience">
-    <h2 class="section-heading">Experience</h2>
-    <ol class="timeline">
-      <li class="timeline-item">
-        <div class="timeline-date">May 2026 – July 2026</div>
-        <div class="timeline-body">
-          <h3>Data Engineering Intern — Jio Platform, Mumbai</h3>
-          <ul class="timeline-list">
-            <li>Engineered Kafka-based event streaming pipelines for real-time data replication across 5 topics, processing 50,000+ events/sec in a distributed ingestion architecture.</li>
-            <li>Cut data replication lag, pipeline downtime, and stale-read rate by 30% through Kafka consumer group tuning and dynamic partition rebalancing across 5 topics.</li>
-            <li>Instrumented pipeline observability with Prometheus and Grafana, enabling real-time alerting on consumer lag across 10 active Kafka streams and cutting mean detection time for throughput degradation by 25%.</li>
-          </ul>
-        </div>
-      </li>
-      <li class="timeline-item">
-        <div class="timeline-date"><span data-todo>[TODO: dates]</span></div>
-        <div class="timeline-body">
-          <h3><span data-todo>[TODO: role title]</span> — Jala Academy</h3>
-          <p><span data-todo>[TODO: 1-2 line accomplishment — CHECK GITHUB/LinkedIn, none found publicly as of this build]</span></p>
-        </div>
-      </li>
-    </ol>
-    <p class="education-note">VIT Vellore — B.Tech CSE, AI &amp; ML Specialization · CGPA 8.78 · 2023–Present</p>
   </section>
 
   <section class="technologies reveal-section" id="technologies">
@@ -275,22 +287,43 @@
       <div class="tech-group">
         <h3>Languages</h3>
         <ul class="tech-tags">
-          <li>Python</li><li>JavaScript</li><li>Java</li><li>SQL</li>
+          <li>Python</li><li>SQL</li><li>Java</li><li>C++</li><li>Object-Oriented Programming (OOP)</li>
         </ul>
       </div>
       <div class="tech-group">
-        <h3>Frameworks</h3>
+        <h3>Data, AI &amp; ML</h3>
         <ul class="tech-tags">
-          <li>FastAPI</li><li>React</li><li>TensorFlow</li>
+          <li>Pandas</li><li>NumPy</li><li>Scikit-learn</li><li>TensorFlow</li><li>Keras</li><li>Matplotlib</li><li>Model Training &amp; Evaluation</li><li>Linear &amp; Logistic Regression</li><li>Neural Networks</li><li>Reinforcement Learning (DQN)</li><li>Generative AI</li><li>Apache Kafka</li><li>Redis</li><li>MySQL</li><li>PostgreSQL</li>
         </ul>
       </div>
       <div class="tech-group">
-        <h3>Infra &amp; Tools</h3>
+        <h3>Web Development &amp; Testing</h3>
         <ul class="tech-tags">
-          <li>Docker</li><li>Kafka</li><li>Redis</li><li>Prometheus</li><li>Git</li>
+          <li>React.js</li><li>HTML5</li><li>CSS3</li><li>JavaScript (ES6)</li><li>Flask</li><li>Node.js</li><li>RESTful APIs</li><li>FastAPI</li><li>pytest</li><li>CI/CD</li><li>Unit &amp; Integration Testing</li>
+        </ul>
+      </div>
+      <div class="tech-group">
+        <h3>DevOps &amp; Tools</h3>
+        <ul class="tech-tags">
+          <li>Git</li><li>GitHub</li><li>VS Code</li><li>GitHub Actions</li><li>Docker</li>
+        </ul>
+      </div>
+      <div class="tech-group">
+        <h3>Practices</h3>
+        <ul class="tech-tags">
+          <li>Agile</li><li>SDLC</li><li>Event-Driven Architecture</li><li>Technical Problem-Solving</li>
         </ul>
       </div>
     </div>
+  </section>
+
+  <section class="certifications reveal-section" id="certifications">
+    <h2 class="section-heading">Certifications</h2>
+    <ul class="cert-list">
+      <li class="cert-card">IBM Certified Specialist — Generative AI</li>
+      <li class="cert-card">Supervised Machine Learning: Regression and Classification — DeepLearning.AI &amp; Stanford University</li>
+      <li class="cert-card">Advanced Learning Algorithms — DeepLearning.AI &amp; Stanford University</li>
+    </ul>
   </section>
 
 </main>

@@ -11,7 +11,44 @@ if (!reduceMotion) document.body.classList.add('motion-ready');
 // --- nav background + scroll gradient, tied to the hero's actual rendered height ---
 const nav = document.getElementById('nav');
 const hero = document.querySelector('.hero');
+const heroName = document.getElementById('hero-name');
 let ticking = false;
+let isDocked = false;
+
+// FLIP: measure the element's rect before the state change, apply the new state,
+// measure again, then invert the visual delta into an instant (untransitioned) inline
+// transform and clear it on the next frame. Reads as one continuous shrink, not a swap.
+function setHeroDock(dock) {
+  if (dock === isDocked) return;
+  isDocked = dock;
+
+  if (reduceMotion) {
+    heroName.classList.toggle('is-docked', dock);
+    return;
+  }
+
+  const first = heroName.getBoundingClientRect();
+  const firstFontSize = parseFloat(getComputedStyle(heroName).fontSize);
+
+  heroName.classList.toggle('is-docked', dock);
+
+  const last = heroName.getBoundingClientRect();
+  const lastFontSize = parseFloat(getComputedStyle(heroName).fontSize);
+
+  const scale = firstFontSize / lastFontSize;
+  const dx = first.left - last.left;
+  const dy = first.top - last.top;
+
+  heroName.style.transition = 'none';
+  heroName.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      heroName.style.transition = '';
+      heroName.style.transform = '';
+    });
+  });
+}
 
 function onScroll() {
   if (!ticking) {
@@ -25,6 +62,7 @@ function update() {
   const y = window.scrollY;
 
   nav.classList.toggle('scrolled', y > heroHeight);
+  setHeroDock(y > heroHeight);
 
   if (!reduceMotion) {
     const progress = Math.min(y / heroHeight, 1);
@@ -37,6 +75,18 @@ function update() {
 
 window.addEventListener('scroll', onScroll, { passive: true });
 update();
+
+// --- hero name doubles as a back-to-top control, docked or not ---
+function scrollToHeroTop() {
+  window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+}
+heroName.addEventListener('click', scrollToHeroTop);
+heroName.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    scrollToHeroTop();
+  }
+});
 
 // --- hero on-load stagger (name -> headline/tags -> ctas), load-triggered not scroll-triggered ---
 if (!reduceMotion) {

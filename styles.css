@@ -125,12 +125,7 @@ html.dev-mode [data-todo] {
   padding: var(--space-2) var(--space-3);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-}
-.nav-logo {
-  font-weight: 600;
-  text-decoration: none;
-  font-size: var(--text-sm);
+  justify-content: flex-end;
 }
 .nav-links {
   display: flex;
@@ -183,6 +178,27 @@ html.dev-mode [data-todo] {
   line-height: 1.05;
   margin: 0 0 var(--space-3);
   letter-spacing: -0.02em;
+  cursor: pointer;
+  transform-origin: top left;
+}
+
+/* Docked state: same element, repositioned/rescaled via a JS-driven FLIP transform
+   (see script.js) so it reads as one continuous shrink into the nav corner, not a
+   cross-fade between two elements. Resting position uses plain top/left pixels (no
+   translate-based centering) so it never fights the FLIP transform for that property. */
+.hero-name.is-docked {
+  position: fixed;
+  top: 15px;
+  left: 24px;
+  font-size: 26px;
+  line-height: 1;
+  margin: 0;
+  letter-spacing: normal;
+  z-index: 60;
+  white-space: nowrap;
+}
+body.motion-ready .hero-name.is-docked {
+  transition: transform var(--duration-base) var(--ease);
 }
 .hero-headline {
   font-size: var(--text-2xl);
@@ -325,7 +341,15 @@ body.motion-ready .reveal-section.is-visible .section-heading::after {
   justify-content: space-between;
   gap: var(--space-3);
 }
+.cs-index {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-1);
+}
 .cs-summary-content h3 { margin: 0 0 var(--space-1); font-size: var(--text-lg); }
+.cs-desc { margin: 0 0 var(--space-2); color: var(--text-secondary); }
+.cs-status { margin: 0 0 var(--space-2); color: var(--text-secondary); font-size: var(--text-xs); font-style: italic; }
 .cs-impact { margin: 0 0 var(--space-2); color: var(--text-secondary); }
 .tech-tags {
   list-style: none;
@@ -433,26 +457,41 @@ body.motion-ready .case-studies .case-study:nth-child(5) { transition-delay: 320
   flex-direction: column;
   gap: var(--space-1);
 }
-.education-note {
-  margin: var(--space-5) 0 0;
-  color: var(--text-secondary);
-  font-size: var(--text-sm);
-}
-
 @media (max-width: 639px) {
   .timeline-item { grid-template-columns: 1fr; }
 }
 
 /* Technologies */
 .tech-groups {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
 }
 .tech-group h3 { font-size: var(--text-sm); color: var(--text-secondary); margin: 0 0 var(--space-2); }
+.tech-groups .tech-tags li { font-size: var(--text-sm); }
 
 @media (min-width: 640px) {
-  .tech-groups { flex-direction: row; flex-wrap: wrap; gap: var(--space-6); }
+  .tech-groups { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .tech-groups { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Certifications: simple cards, no timeline connector needed */
+.cert-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.cert-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-3);
 }
 
 /* Footer */
