@@ -45,11 +45,17 @@ document.querySelectorAll('.cs-summary').forEach((btn) => {
 const DOCKED_FONT_SIZE = 26; // px, matches the nav's visual scale
 let fullOrigin = null; // {x, y} of the hero-name's natural (undocked) position
 
+const heroSpacer = document.querySelector('.hero-name-spacer');
+
 function dockHeroName(animate) {
   const startRect = heroName.getBoundingClientRect();
-  const fullFontSize = parseFloat(getComputedStyle(heroName).fontSize);
+  const nameStyle = getComputedStyle(heroName);
+  const fullFontSize = parseFloat(nameStyle.fontSize);
   fullOrigin = { x: startRect.left, y: startRect.top };
 
+  // Reserve the h1's flow slot before it goes position:fixed — otherwise the whole
+  // document below the hero shifts up by the h1's height at the dock threshold.
+  heroSpacer.style.height = `${heroName.offsetHeight + parseFloat(nameStyle.marginBottom)}px`;
   heroName.classList.add('is-docked');
   const slotRect = navLogoSlot.getBoundingClientRect();
   const scale = DOCKED_FONT_SIZE / fullFontSize;
@@ -74,17 +80,24 @@ function undockHeroName(animate) {
       ease: 'power2.out',
       onComplete: () => {
         heroName.classList.remove('is-docked');
+        heroSpacer.style.height = '0';
         gsap.set(heroName, { clearProps: 'transform' });
       },
     });
   } else {
     heroName.classList.remove('is-docked');
     heroName.style.transform = '';
+    heroSpacer.style.height = '0';
   }
 }
 
 if (!reduceMotion) {
   gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  // Mirror the CSS motion tokens (--duration-slow: 400ms, --ease) so GSAP and CSS
+  // transitions share one timing language instead of drifting apart.
+  const DUR = 0.4;
+  const EASE = 'power2.out';
 
   lenis = new Lenis({ duration: 1.1, easing: (t) => 1 - Math.pow(1 - t, 3) });
   lenis.on('scroll', ScrollTrigger.update);
@@ -93,29 +106,36 @@ if (!reduceMotion) {
 
   // Lenis virtualizes scroll, so native hash-link jumps (nav, "View Work" CTA)
   // no longer move the page on their own — route them through lenis.scrollTo.
+  // The skip link jumps instantly and moves focus: smooth-scrolling a keyboard
+  // bypass defeats its purpose.
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', (e) => {
       const target = document.querySelector(anchor.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
-      lenis.scrollTo(target);
+      if (anchor.classList.contains('skip-link')) {
+        lenis.scrollTo(target, { immediate: true });
+        target.focus();
+      } else {
+        lenis.scrollTo(target);
+      }
     });
   });
 
-  // --- hero on-load stagger (name -> headline/tags -> ctas) ---
-  const heroTl = gsap.timeline({ defaults: { opacity: 0, y: 16, duration: 0.5, ease: 'power2.out' } });
+  // --- hero on-load stagger (name -> tags -> ctas; headline is covered by SplitText below) ---
+  const heroTl = gsap.timeline({ defaults: { opacity: 0, y: 16, duration: DUR, ease: EASE } });
   heroTl
     .from('.hero-name', {})
-    .from(['.hero-headline', '.role-tags'], {}, 0.1)
+    .from('.role-tags', {}, 0.1)
     .from('.hero-ctas', {}, 0.2);
 
-  // --- section reveal on scroll, once each ---
+  // --- section reveal on scroll, once each (.is-visible also draws the heading underline, see CSS) ---
   gsap.utils.toArray('.reveal-section').forEach((section) => {
     gsap.from(section, {
       opacity: 0,
       y: 24,
-      duration: 0.6,
-      ease: 'power2.out',
+      duration: DUR,
+      ease: EASE,
       scrollTrigger: {
         trigger: section,
         start: 'top 85%',
@@ -129,9 +149,9 @@ if (!reduceMotion) {
   gsap.from('.case-study', {
     opacity: 0,
     y: 24,
-    duration: 0.6,
+    duration: DUR,
     stagger: 0.08,
-    ease: 'power2.out',
+    ease: EASE,
     scrollTrigger: { trigger: '.work', start: 'top 85%', once: true },
   });
 
@@ -142,8 +162,8 @@ if (!reduceMotion) {
       opacity: 0,
       y: 16,
       stagger: 0.03,
-      duration: 0.5,
-      ease: 'power2.out',
+      duration: DUR,
+      ease: EASE,
       scrollTrigger: { trigger: el, start: 'top 85%', once: true },
     });
   });

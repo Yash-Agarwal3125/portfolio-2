@@ -14,10 +14,10 @@
   --space-1: 8px; --space-2: 16px; --space-3: 24px; --space-4: 32px;
   --space-5: 48px; --space-6: 64px; --space-7: 96px; --space-8: 128px;
 
-  /* Typography */
-  --text-xs: 13px; --text-sm: 15px; --text-base: 18px; --text-lg: 22px;
-  --text-xl: 34px; --text-2xl: 48px; --text-3xl: 80px;
-  --text-hero: clamp(80px, 14vw, 200px);
+  /* Typography (locked values from CLAUDE.md — do not drift) */
+  --text-xs: 13px; --text-sm: 15px; --text-base: 17px; --text-lg: 20px;
+  --text-xl: 28px; --text-2xl: 40px; --text-3xl: 64px;
+  --text-hero: clamp(64px, 12vw, 160px);
 
   /* Radius / Shadow */
   --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px;
@@ -33,7 +33,9 @@
 /* font stack falls back to system fonts; self-host Geist woff2 here once the asset is available */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+/* No CSS scroll-behavior:smooth here on purpose — Lenis owns smoothing and scrolls the
+   window per-frame; browser-level smoothing on top of that turns its output to mush.
+   Anchor jumps are routed through lenis.scrollTo in script.js instead. */
 
 body {
   position: relative;
@@ -202,6 +204,10 @@ html.dev-mode [data-todo] {
   z-index: 60;
   white-space: nowrap;
 }
+/* Holds the h1's flow slot open while it's docked (position:fixed removes it from
+   layout), so content below the hero doesn't jump by the h1's height at the dock
+   threshold. Height is set from a live measurement in script.js. */
+.hero-name-spacer { height: 0; }
 .hero-headline {
   font-size: var(--text-2xl);
   color: var(--text-secondary);
@@ -249,7 +255,6 @@ html.dev-mode [data-todo] {
 
 @media (max-width: 639px) {
   .hero-name { font-size: clamp(48px, 16vw, 72px); }
-  .role-tags { justify-content: center; text-align: center; }
   .hero-ctas { flex-direction: column; }
   .btn { text-align: center; }
 }
@@ -277,6 +282,15 @@ main section, .footer {
   height: 2px;
   width: 100%;
   background: var(--accent);
+}
+/* Underline draws in when the section reveals (script.js adds .is-visible via
+   ScrollTrigger). Gated on motion-ready so reduced motion gets the full underline. */
+body.motion-ready .reveal-section .section-heading::after {
+  width: 0;
+  transition: width var(--duration-slow) var(--ease);
+}
+body.motion-ready .reveal-section.is-visible .section-heading::after {
+  width: 100%;
 }
 
 /* Case studies */
@@ -464,5 +478,4 @@ main section, .footer {
 
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
-  html { scroll-behavior: auto; }
 }

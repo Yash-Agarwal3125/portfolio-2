@@ -36,12 +36,13 @@
   </div>
 </header>
 
-<main id="main">
+<main id="main" tabindex="-1">
 
   <section class="hero">
     <div class="hero-gradient" aria-hidden="true"></div>
     <div class="hero-inner">
-      <h1 class="hero-name" id="hero-name" role="button" tabindex="0" aria-label="Back to top">Yash Agarwal</h1>
+      <h1 class="hero-name" id="hero-name" role="button" tabindex="0" aria-label="Yash Agarwal — back to top">Yash Agarwal</h1>
+      <div class="hero-name-spacer" aria-hidden="true"></div>
       <p class="hero-headline">Backend systems and machine learning — Kafka pipelines, distributed inference, and models that ship.</p>
       <ul class="role-tags">
         <li>Data Engineer</li>
@@ -61,10 +62,10 @@
     <div class="case-studies">
 
       <div class="case-study">
-        <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-1" id="cs-summary-1">
+        <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-1" id="cs-summary-1" aria-labelledby="cs-title-1">
           <span class="cs-summary-content">
             <span class="cs-index">01 / 05</span>
-            <h3>Distributed AI Inference Platform</h3>
+            <h3 id="cs-title-1">Distributed AI Inference Platform</h3>
             <p class="cs-desc">12 Dockerized microservices with async request queuing via FastAPI and Redis. Kafka-based task routing hitting 50 req/sec at 50ms p99. An adaptive Q-learning scheduler handles dynamic batch optimization.</p>
             <p class="cs-impact">50 req/sec throughput at 50ms p99 latency, across 12 containerized microservices with a self-tuning Q-learning scheduler and full Prometheus/Grafana observability.</p>
             <ul class="tech-tags">
@@ -99,10 +100,10 @@
       </div>
 
       <div class="case-study">
-        <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-2" id="cs-summary-2">
+        <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-2" id="cs-summary-2" aria-labelledby="cs-title-2">
           <span class="cs-summary-content">
             <span class="cs-index">02 / 05</span>
-            <h3>IPL-Bhai-Log</h3>
+            <h3 id="cs-title-2">IPL-Bhai-Log</h3>
             <p class="cs-desc">Full-stack sports prediction platform. SQLAlchemy row-level locking prevents race conditions on concurrent bets. JWT auth, bcrypt, rate limiting, Alembic migrations, and an ACID-compliant transaction engine.</p>
             <p class="cs-impact">Full ACID compliance on concurrent wallet updates, rate-limited via SlowAPI, with Alembic-managed migrations and a dedicated security test suite required to pass before any commit merges.</p>
             <ul class="tech-tags">
@@ -137,10 +138,10 @@
       </div>
 
       <div class="case-study">
-        <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-3" id="cs-summary-3">
+        <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-3" id="cs-summary-3" aria-labelledby="cs-title-3">
           <span class="cs-summary-content">
             <span class="cs-index">03 / 05</span>
-            <h3>Self-Driving DQN Car</h3>
+            <h3 id="cs-title-3">Self-Driving DQN Car</h3>
             <p class="cs-desc">A Deep Q-Network agent for autonomous navigation using 8-ray LiDAR sensor data in a Pygame simulation. A carefully shaped reward function balances lane-keeping against collision avoidance across 50 commits of iterative RL research.</p>
             <p class="cs-impact">98% successful navigation rate in test epochs, across 50 commits and 4 months of iterative reward-function and hyperparameter tuning on Google Colab GPU.</p>
             <ul class="tech-tags">
@@ -175,10 +176,10 @@
       </div>
 
       <div class="case-study">
-        <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-4" id="cs-summary-4">
+        <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-4" id="cs-summary-4" aria-labelledby="cs-title-4">
           <span class="cs-summary-content">
             <span class="cs-index">04 / 05</span>
-            <h3>Placement Mail Tracker</h3>
+            <h3 id="cs-title-4">Placement Mail Tracker</h3>
             <p class="cs-desc">A modular Gmail → Gemini AI → Google Sheets placement pipeline. Full pytest suite, GitHub Actions CI, and ruff linting — the most production-grade repo of the five: tests, CI, docs, and a real separation of concerns.</p>
             <p class="cs-status">The core engineering challenge is reliability — self-healing around Gmail and Gemini API flakiness, not a novel algorithm.</p>
             <p class="cs-impact">30+ commits building a modular Gmail → Gemini AI → Google Sheets pipeline, with a full pytest suite and GitHub Actions CI gating every change.</p>
@@ -214,10 +215,10 @@
       </div>
 
       <div class="case-study">
-        <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-5" id="cs-summary-5">
+        <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-5" id="cs-summary-5" aria-labelledby="cs-title-5">
           <span class="cs-summary-content">
             <span class="cs-index">05 / 05</span>
-            <h3>Flight Price Predictor</h3>
+            <h3 id="cs-title-5">Flight Price Predictor</h3>
             <p class="cs-desc">A from-scratch gradient descent implementation — no sklearn for the core model. An EDA-heavy preprocessing pipeline feeds a Flask front end, deployed on Render. Built to understand ML fundamentals, not just use them.</p>
             <p class="cs-impact"><span data-todo>[TODO: RMSE/R² or other accuracy metric — not stated in the repo as of this build]</span></p>
             <ul class="tech-tags">
