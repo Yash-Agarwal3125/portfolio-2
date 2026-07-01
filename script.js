@@ -6,113 +6,30 @@ const isDevHost = ['localhost', '127.0.0.1'].includes(location.hostname)
   || new URLSearchParams(location.search).has('dev');
 if (isDevHost) document.documentElement.classList.add('dev-mode');
 
+// Gates the cursor-reactive grid highlight only (see styles.css) — scroll animation
+// gating lives entirely in the reduceMotion branch below.
 if (!reduceMotion) document.body.classList.add('motion-ready');
 
-// --- nav background + scroll gradient, tied to the hero's actual rendered height ---
 const nav = document.getElementById('nav');
 const hero = document.querySelector('.hero');
 const heroName = document.getElementById('hero-name');
-let ticking = false;
-let isDocked = false;
+const navLogoSlot = document.querySelector('.nav-logo-slot');
 
-// FLIP: measure the element's rect before the state change, apply the new state,
-// measure again, then invert the visual delta into an instant (untransitioned) inline
-// transform and clear it on the next frame. Reads as one continuous shrink, not a swap.
-function setHeroDock(dock) {
-  if (dock === isDocked) return;
-  isDocked = dock;
+let lenis = null;
 
-  if (reduceMotion) {
-    heroName.classList.toggle('is-docked', dock);
-    return;
-  }
-
-  const first = heroName.getBoundingClientRect();
-  const firstFontSize = parseFloat(getComputedStyle(heroName).fontSize);
-
-  heroName.classList.toggle('is-docked', dock);
-
-  const last = heroName.getBoundingClientRect();
-  const lastFontSize = parseFloat(getComputedStyle(heroName).fontSize);
-
-  const scale = firstFontSize / lastFontSize;
-  const dx = first.left - last.left;
-  const dy = first.top - last.top;
-
-  heroName.style.transition = 'none';
-  heroName.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
-
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      heroName.style.transition = '';
-      heroName.style.transform = '';
-    });
-  });
+function scrollToTop() {
+  if (lenis) lenis.scrollTo(0, { duration: 1.1 });
+  else window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
 }
-
-function onScroll() {
-  if (!ticking) {
-    requestAnimationFrame(update);
-    ticking = true;
-  }
-}
-
-function update() {
-  const heroHeight = hero.offsetHeight;
-  const y = window.scrollY;
-
-  nav.classList.toggle('scrolled', y > heroHeight);
-  setHeroDock(y > heroHeight);
-
-  if (!reduceMotion) {
-    const progress = Math.min(y / heroHeight, 1);
-    hero.style.setProperty('--gx', `${20 + progress * 40}%`);
-    hero.style.setProperty('--gy', `${20 + progress * 30}%`);
-  }
-
-  ticking = false;
-}
-
-window.addEventListener('scroll', onScroll, { passive: true });
-update();
 
 // --- hero name doubles as a back-to-top control, docked or not ---
-function scrollToHeroTop() {
-  window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
-}
-heroName.addEventListener('click', scrollToHeroTop);
+heroName.addEventListener('click', scrollToTop);
 heroName.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' || e.key === ' ') {
     e.preventDefault();
-    scrollToHeroTop();
+    scrollToTop();
   }
 });
-
-// --- hero on-load stagger (name -> headline/tags -> ctas), load-triggered not scroll-triggered ---
-if (!reduceMotion) {
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    document.body.classList.add('hero-animate');
-  }));
-}
-
-// --- section reveal on scroll, once each ---
-if (!reduceMotion && 'IntersectionObserver' in window) {
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('is-visible');
-      if (entry.target.classList.contains('work')) {
-        document.querySelector('.case-studies').classList.add('cards-visible');
-      }
-      sectionObserver.unobserve(entry.target);
-    });
-  }, { threshold: 0.15 });
-
-  document.querySelectorAll('.reveal-section').forEach((el) => sectionObserver.observe(el));
-} else {
-  // reduced motion (or no IO support): everything just appears, no reveal state needed
-  document.querySelectorAll('.reveal-section').forEach((el) => el.classList.add('is-visible'));
-}
 
 // --- case study expand/collapse, height-animated via CSS grid-template-rows ---
 document.querySelectorAll('.cs-summary').forEach((btn) => {
@@ -123,6 +40,159 @@ document.querySelectorAll('.cs-summary').forEach((btn) => {
     document.getElementById(btn.getAttribute('aria-controls')).classList.toggle('is-open', !expanded);
   });
 });
+
+// --- sticky hero-name dock: shared by the GSAP path and the reduced-motion path ---
+const DOCKED_FONT_SIZE = 26; // px, matches the nav's visual scale
+let fullOrigin = null; // {x, y} of the hero-name's natural (undocked) position
+
+function dockHeroName(animate) {
+  const startRect = heroName.getBoundingClientRect();
+  const fullFontSize = parseFloat(getComputedStyle(heroName).fontSize);
+  fullOrigin = { x: startRect.left, y: startRect.top };
+
+  heroName.classList.add('is-docked');
+  const slotRect = navLogoSlot.getBoundingClientRect();
+  const scale = DOCKED_FONT_SIZE / fullFontSize;
+
+  if (animate) {
+    gsap.killTweensOf(heroName, 'x,y,scale');
+    gsap.set(heroName, { x: fullOrigin.x, y: fullOrigin.y, scale: 1 });
+    gsap.to(heroName, { x: slotRect.left, y: slotRect.top, scale, duration: 0.4, ease: 'power2.out' });
+  } else {
+    heroName.style.transform = `translate(${slotRect.left}px, ${slotRect.top}px) scale(${scale})`;
+  }
+}
+
+function undockHeroName(animate) {
+  if (animate) {
+    gsap.killTweensOf(heroName, 'x,y,scale');
+    gsap.to(heroName, {
+      x: fullOrigin ? fullOrigin.x : 0,
+      y: fullOrigin ? fullOrigin.y : 0,
+      scale: 1,
+      duration: 0.4,
+      ease: 'power2.out',
+      onComplete: () => {
+        heroName.classList.remove('is-docked');
+        gsap.set(heroName, { clearProps: 'transform' });
+      },
+    });
+  } else {
+    heroName.classList.remove('is-docked');
+    heroName.style.transform = '';
+  }
+}
+
+if (!reduceMotion) {
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  lenis = new Lenis({ duration: 1.1, easing: (t) => 1 - Math.pow(1 - t, 3) });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((time) => lenis.raf(time * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+  // Lenis virtualizes scroll, so native hash-link jumps (nav, "View Work" CTA)
+  // no longer move the page on their own — route them through lenis.scrollTo.
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      lenis.scrollTo(target);
+    });
+  });
+
+  // --- hero on-load stagger (name -> headline/tags -> ctas) ---
+  const heroTl = gsap.timeline({ defaults: { opacity: 0, y: 16, duration: 0.5, ease: 'power2.out' } });
+  heroTl
+    .from('.hero-name', {})
+    .from(['.hero-headline', '.role-tags'], {}, 0.1)
+    .from('.hero-ctas', {}, 0.2);
+
+  // --- section reveal on scroll, once each ---
+  gsap.utils.toArray('.reveal-section').forEach((section) => {
+    gsap.from(section, {
+      opacity: 0,
+      y: 24,
+      duration: 0.6,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => section.classList.add('is-visible'),
+      },
+    });
+  });
+
+  // --- case-study card stagger within Selected Work ---
+  gsap.from('.case-study', {
+    opacity: 0,
+    y: 24,
+    duration: 0.6,
+    stagger: 0.08,
+    ease: 'power2.out',
+    scrollTrigger: { trigger: '.work', start: 'top 85%', once: true },
+  });
+
+  // --- section headers + hero headline: word-stagger reveal, not body copy ---
+  document.querySelectorAll('.section-heading, .hero-headline').forEach((el) => {
+    const split = new SplitText(el, { type: 'words' });
+    gsap.from(split.words, {
+      opacity: 0,
+      y: 16,
+      stagger: 0.03,
+      duration: 0.5,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+    });
+  });
+
+  // --- hero radial gradient shifts with scroll progress through the hero ---
+  ScrollTrigger.create({
+    trigger: hero,
+    start: 'top top',
+    end: 'bottom top',
+    scrub: true,
+    onUpdate: (self) => {
+      hero.style.setProperty('--gx', `${20 + self.progress * 40}%`);
+      hero.style.setProperty('--gy', `${20 + self.progress * 30}%`);
+    },
+  });
+
+  // --- nav background + sticky hero-name dock, one trigger for both ---
+  ScrollTrigger.create({
+    trigger: hero,
+    start: 'bottom top',
+    onEnter: () => {
+      nav.classList.add('scrolled');
+      dockHeroName(true);
+    },
+    onLeaveBack: () => {
+      nav.classList.remove('scrolled');
+      undockHeroName(true);
+    },
+  });
+
+  // sync initial state in case the page loads already scrolled past the hero
+  if (window.scrollY > hero.offsetHeight) {
+    nav.classList.add('scrolled');
+    dockHeroName(false);
+  }
+} else {
+  // reduced motion: no Lenis, no GSAP scroll animation — native scroll, instant dock toggle
+  document.querySelectorAll('.reveal-section').forEach((el) => el.classList.add('is-visible'));
+
+  function syncDockState() {
+    const shouldDock = window.scrollY > hero.offsetHeight;
+    nav.classList.toggle('scrolled', shouldDock);
+    if (shouldDock !== heroName.classList.contains('is-docked')) {
+      shouldDock ? dockHeroName(false) : undockHeroName(false);
+    }
+  }
+  window.addEventListener('scroll', syncDockState, { passive: true });
+  syncDockState();
+}
 
 // --- cursor-reactive grid highlight: desktop pointer only, skipped under reduced motion ---
 if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {

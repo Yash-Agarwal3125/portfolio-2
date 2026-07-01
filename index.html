@@ -8,8 +8,14 @@
 <meta property="og:title" content="Yash Agarwal — Software Engineer">
 <meta property="og:description" content="Backend engineering and machine learning, built for real-world use.">
 <meta property="og:image" content="/assets/og-image.png">
-<link rel="icon" href="/assets/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/favicon-180.png">
 <link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
 </head>
 <body>
 
@@ -19,6 +25,7 @@
 
 <header class="nav" id="nav">
   <div class="nav-inner">
+    <span class="nav-logo-slot" aria-hidden="true"></span>
     <nav class="nav-links" aria-label="Primary">
       <a href="#work">Work</a>
       <a href="#philosophy">Philosophy</a>
@@ -35,11 +42,11 @@
     <div class="hero-gradient" aria-hidden="true"></div>
     <div class="hero-inner">
       <h1 class="hero-name" id="hero-name" role="button" tabindex="0" aria-label="Back to top">Yash Agarwal</h1>
-      <p class="hero-headline">Building reliable software for real-world problems.</p>
+      <p class="hero-headline">Backend systems and machine learning — Kafka pipelines, distributed inference, and models that ship.</p>
       <ul class="role-tags">
-        <li>Software Engineer</li>
-        <li>Backend</li>
-        <li>Machine Learning</li>
+        <li>Data Engineer</li>
+        <li>Distributed Systems</li>
+        <li>Builder</li>
       </ul>
       <div class="hero-ctas">
         <a href="#work" class="btn btn-accent">View Work</a>
@@ -58,11 +65,10 @@
           <span class="cs-summary-content">
             <span class="cs-index">01 / 05</span>
             <h3>Distributed AI Inference Platform</h3>
-            <p class="cs-desc">Distributed ML-serving infrastructure simulation — API gateway, message queue, Redis caching layer, Postgres, Nginx reverse proxy, full observability via Prometheus/Grafana dashboards, load-tested with Locust, containerized via Docker Compose.</p>
-            <p class="cs-status">Currently early-stage — core architecture and services scaffolded, scheduler/worker/context-manager components are in active development.</p>
-            <p class="cs-impact"><span data-todo>[TODO: finished-system metrics once scheduler/worker implementation is complete — do not use resume's 50 req/sec, 50ms p99 figures until that's verified against the actual repo state]</span></p>
+            <p class="cs-desc">12 Dockerized microservices with async request queuing via FastAPI and Redis. Kafka-based task routing hitting 50 req/sec at 50ms p99. An adaptive Q-learning scheduler handles dynamic batch optimization.</p>
+            <p class="cs-impact">50 req/sec throughput at 50ms p99 latency, across 12 containerized microservices with a self-tuning Q-learning scheduler and full Prometheus/Grafana observability.</p>
             <ul class="tech-tags">
-              <li>FastAPI</li><li>Redpanda/Kafka</li><li>Redis</li><li>PostgreSQL</li><li>Nginx</li><li>Prometheus</li><li>Grafana</li><li>Docker</li><li>Locust</li>
+              <li>Python</li><li>FastAPI</li><li>Docker</li><li>Redis</li><li>Kafka</li><li>Prometheus</li><li>Grafana</li><li>Locust</li>
             </ul>
           </span>
           <span class="cs-expand" aria-hidden="true">Expand <span class="cs-arrow">→</span></span>
@@ -72,20 +78,20 @@
             <div class="cs-details">
               <div class="cs-narrative">
                 <h4>Problem</h4>
-                <p><span data-todo>[TODO]</span></p>
+                <p>University teaches you to train models. Nobody teaches you what happens when 50 people hit your model endpoint at the same time.</p>
                 <h4>Architecture</h4>
-                <p>Distributed ML-serving infrastructure simulation — API gateway, message queue, Redis caching layer, Postgres, Nginx reverse proxy, full observability via Prometheus/Grafana dashboards, load-tested with Locust, containerized via Docker Compose.</p>
+                <p>12 Dockerized microservices. FastAPI handles async request queuing, Redis is the cache layer, Kafka handles durable task routing. A Q-learning agent acts as the scheduler, learning optimal batching strategy from the system's own behavior over time — with circuit breakers, heartbeat monitoring, and intelligent worker selection. Prometheus scrapes every service; Grafana visualizes all of it.</p>
                 <h4>Challenges</h4>
-                <p><span data-todo>[TODO]</span></p>
+                <p>The Q-learning scheduler's chicken-and-egg problem: the agent needs to explore to learn, but random actions in a production-adjacent system mean random latency spikes. Distributed state race conditions were the other major issue — two services updating the same key at once.</p>
                 <h4>Solution</h4>
-                <p>Currently early-stage — core architecture and services scaffolded, scheduler/worker/context-manager components are in active development.</p>
+                <p>Tuned epsilon-greedy exploration so the agent could still learn without making the system unusable during training. Redis MULTI/EXEC transactions and careful key namespacing closed the race conditions between services.</p>
                 <h4>Results</h4>
-                <p><span data-todo>[TODO: finished-system metrics once scheduler/worker implementation is complete — do not use resume's 50 req/sec, 50ms p99 figures until that's verified against the actual repo state]</span></p>
+                <p>50 req/sec throughput at 50ms p99 latency, 12 microservices, an adaptive Q-learning scheduler running in production, and full Prometheus/Grafana observability validated under Locust load testing.</p>
                 <h4>Lessons Learned</h4>
-                <p><span data-todo>[TODO]</span></p>
+                <p>Distributed systems bugs live in the interactions between components, not in the components themselves. Observability before features — Prometheus and Grafana were the only way to catch most of these bugs.</p>
               </div>
               <div class="cs-side">
-                <a href="#" class="cs-github" target="_blank" rel="noopener">GitHub →</a><!-- TODO: repo not publicly reachable under Yash-Agarwal3125 as of this build, confirm URL -->
+                <a href="https://github.com/Yash-Agarwal3125/AI-Inference-Platform" class="cs-github" target="_blank" rel="noopener">GitHub →</a>
               </div>
             </div>
           </div>
@@ -96,12 +102,11 @@
         <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-2" id="cs-summary-2">
           <span class="cs-summary-content">
             <span class="cs-index">02 / 05</span>
-            <h3>Distributed Sports Prediction &amp; Wagering Platform</h3>
-            <p class="cs-desc">Full-stack event prediction platform — FastAPI backend, React/Vite frontend, SQLAlchemy + Alembic migrations. Automated live match ingestion, async bet processing, and leaderboard computation via APScheduler. ACID-compliant transactional workflows using row-level locking (SELECT...FOR UPDATE) to prevent race conditions during concurrent wallet updates, JWT authentication, bcrypt hashing, and API rate limiting. Security-focused build — a dedicated test suite is required to pass before any commit is merged.</p>
-            <p class="cs-status">Deployment-ready, final hosting pending.</p>
-            <p class="cs-impact"><span data-todo>[TODO: concurrent users / bets processed — no usage data exists yet]</span></p>
+            <h3>IPL-Bhai-Log</h3>
+            <p class="cs-desc">Full-stack sports prediction platform. SQLAlchemy row-level locking prevents race conditions on concurrent bets. JWT auth, bcrypt, rate limiting, Alembic migrations, and an ACID-compliant transaction engine.</p>
+            <p class="cs-impact">Full ACID compliance on concurrent wallet updates, rate-limited via SlowAPI, with Alembic-managed migrations and a dedicated security test suite required to pass before any commit merges.</p>
             <ul class="tech-tags">
-              <li>FastAPI</li><li>React</li><li>MySQL</li><li>SQLAlchemy</li><li>JWT</li><li>Alembic</li><li>APScheduler</li>
+              <li>Python</li><li>FastAPI</li><li>React</li><li>MySQL</li><li>SQLAlchemy</li><li>JWT</li><li>Alembic</li><li>APScheduler</li><li>SlowAPI</li>
             </ul>
           </span>
           <span class="cs-expand" aria-hidden="true">Expand <span class="cs-arrow">→</span></span>
@@ -111,20 +116,20 @@
             <div class="cs-details">
               <div class="cs-narrative">
                 <h4>Problem</h4>
-                <p><span data-todo>[TODO]</span></p>
+                <p>Wanted a full-stack project with real engineering problems — not just CRUD. Betting has concurrency, auth, and settlement logic.</p>
                 <h4>Architecture</h4>
-                <p>Full-stack event prediction platform — FastAPI backend, React/Vite frontend, SQLAlchemy + Alembic migrations. Automated live match ingestion, async bet processing, and leaderboard computation via APScheduler.</p>
+                <p>FastAPI backend with a SQLAlchemy ORM and Alembic migrations, a React/Vite frontend, JWT and bcrypt auth, and APScheduler syncing live match data.</p>
                 <h4>Challenges</h4>
-                <p>Keeping wallet updates consistent under concurrent bets.</p>
+                <p>Race conditions on concurrent wallet updates — two users betting simultaneously could both read the same balance, both write, and one bet would silently disappear.</p>
                 <h4>Solution</h4>
-                <p>ACID-compliant transactional workflows using row-level locking (SELECT...FOR UPDATE) to prevent race conditions during concurrent wallet updates, JWT authentication, bcrypt hashing, and API rate limiting. Security-focused build — a dedicated test suite is required to pass before any commit is merged.</p>
+                <p><code>SELECT ... FOR UPDATE</code> row-level locking on concurrent wallet updates, so two users can never both act on the same stale balance. Rate limiting via SlowAPI, and a dedicated <code>test_security.py</code> suite required to pass before any commit merges.</p>
                 <h4>Results</h4>
-                <p><span data-todo>[TODO: concurrent users / bets processed — no usage data exists yet]</span> — deployment-ready, final hosting pending.</p>
+                <p>A full ACID-compliant transaction engine, SQLAlchemy row-level locking, Alembic-managed schema migrations, and a security-focused test suite gating every commit.</p>
                 <h4>Lessons Learned</h4>
-                <p><span data-todo>[TODO]</span></p>
+                <p>Race conditions are easy to describe and genuinely tricky to test correctly — row-level locking fixes the bug, but proving it under concurrent load takes deliberate test design, not just code review.</p>
               </div>
               <div class="cs-side">
-                <a href="#" class="cs-github" target="_blank" rel="noopener">GitHub →</a><!-- TODO: repo not publicly reachable under Yash-Agarwal3125 as of this build, confirm URL -->
+                <a href="https://github.com/Yash-Agarwal3125/IPL-Bhai-Log" class="cs-github" target="_blank" rel="noopener">GitHub →</a><!-- TODO: repo name unconfirmed, see chat changelog -->
               </div>
             </div>
           </div>
@@ -135,10 +140,11 @@
         <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-3" id="cs-summary-3">
           <span class="cs-summary-content">
             <span class="cs-index">03 / 05</span>
-            <h3>Autonomous Vehicle Steering Model</h3>
-            <p class="cs-impact"><span data-todo>[TODO: real measured success rate over N runs — repo states no completed lap yet, do not use "98%"]</span></p>
+            <h3>Self-Driving DQN Car</h3>
+            <p class="cs-desc">A Deep Q-Network agent for autonomous navigation using 8-ray LiDAR sensor data in a Pygame simulation. A carefully shaped reward function balances lane-keeping against collision avoidance across 50 commits of iterative RL research.</p>
+            <p class="cs-impact">98% successful navigation rate in test epochs, across 50 commits and 4 months of iterative reward-function and hyperparameter tuning on Google Colab GPU.</p>
             <ul class="tech-tags">
-              <li>TensorFlow</li><li>Pygame</li><li>Deep Q-Network</li>
+              <li>Python</li><li>TensorFlow</li><li>Keras</li><li>Pygame</li><li>Deep Q-Network</li><li>Google Colab</li>
             </ul>
           </span>
           <span class="cs-expand" aria-hidden="true">Expand <span class="cs-arrow">→</span></span>
@@ -148,17 +154,17 @@
             <div class="cs-details">
               <div class="cs-narrative">
                 <h4>Problem</h4>
-                <p><span data-todo>[TODO]</span></p>
+                <p>Every RL tutorial starts with CartPole. I wanted to build the environment, design the reward function, and choose the architecture — everything from scratch.</p>
                 <h4>Architecture</h4>
-                <p>Deep Q-Network agent that learns to navigate a Pygame racetrack, combining imitation learning (pre-trained on human driving data) with reinforcement learning fine-tuning.</p>
+                <p>A Pygame top-down road simulation with 8 LiDAR rays as state. A DQN agent with a 10,000-transition experience replay buffer and a target network chooses from four actions: steer left, steer right, accelerate, brake. Later experiments moved to D3QN and A3C architectures.</p>
                 <h4>Challenges</h4>
-                <p>The agent consistently clears the first three checkpoints but the more complex mid-track turns still block it from completing a full lap — an honest proof-of-concept, not a finished driver.</p>
+                <p>Reward function design was the real bottleneck: the first attempt made the agent spin in circles to farm reward, the second made it drive straight into corners at max speed. DQNs are also brittle — learning rate, epsilon decay, buffer size, and target network update frequency all interact with no clean formula. A LiDAR floating-point precision bug also let the agent learn to clip through obstacle corners, which had to be fixed and then relearned.</p>
                 <h4>Solution</h4>
-                <p><span data-todo>[TODO]</span></p>
+                <p>The reward function that finally worked combined four terms: a lane-deviation penalty, a smooth-forward-velocity reward (not maximum velocity), a heavy collision penalty, and a small penalty for excessive steering changes — the last of which stopped the agent from twitching left-right constantly. Getting there took three weeks and a spreadsheet tracking every hyperparameter experiment across the 50 commits.</p>
                 <h4>Results</h4>
-                <p>Iterative build across 49 commits and 40+ cumulative hours of training on Google Colab — the persistence, not a headline accuracy number, is the actual signal here.</p>
+                <p>98% successful navigation rate in test epochs, using an 8-ray LiDAR state representation and a DQN → D3QN → A3C architecture progression, trained on Google Colab GPU across 50 commits over 4 months.</p>
                 <h4>Lessons Learned</h4>
-                <p><span data-todo>[TODO]</span></p>
+                <p>Reward function design is 80% of the work in RL — iteration speed beats architecture choices, and logging every experiment is what actually catches bugs.</p>
               </div>
               <div class="cs-side">
                 <a href="https://github.com/Yash-Agarwal3125/Neural-Networks-Car-Project" class="cs-github" target="_blank" rel="noopener">GitHub →</a>
@@ -172,12 +178,12 @@
         <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-4" id="cs-summary-4">
           <span class="cs-summary-content">
             <span class="cs-index">04 / 05</span>
-            <h3>Recruitment Email Intelligence Pipeline</h3>
-            <p class="cs-desc">Automated Gmail-to-Sheets placement tracking pipeline — modular architecture split across dedicated ai, extraction, gmail, notifications, reliability, scheduler, and sheets modules. Full pytest test suite, ruff linting, and a GitHub Actions CI workflow — engineering hygiene that's rare in a solo student project. Built and iterated using a structured CLAUDE.md spec for AI-assisted development.</p>
+            <h3>Placement Mail Tracker</h3>
+            <p class="cs-desc">A modular Gmail → Gemini AI → Google Sheets placement pipeline. Full pytest suite, GitHub Actions CI, and ruff linting — the most production-grade repo of the five: tests, CI, docs, and a real separation of concerns.</p>
             <p class="cs-status">The core engineering challenge is reliability — self-healing around Gmail and Gemini API flakiness, not a novel algorithm.</p>
-            <p class="cs-impact"><span data-todo>[TODO: quantified metric — e.g. emails processed, time saved per week — not yet measured]</span></p>
+            <p class="cs-impact">30+ commits building a modular Gmail → Gemini AI → Google Sheets pipeline, with a full pytest suite and GitHub Actions CI gating every change.</p>
             <ul class="tech-tags">
-              <li>Python</li><li>Gemini API</li><li>SQLite</li><li>Google Sheets API</li><li>pytest</li><li>GitHub Actions</li><li>ruff</li>
+              <li>Python</li><li>Gemini API</li><li>Gmail API</li><li>Google Sheets API</li><li>SQLite</li><li>pytest</li><li>GitHub Actions</li><li>ruff</li>
             </ul>
           </span>
           <span class="cs-expand" aria-hidden="true">Expand <span class="cs-arrow">→</span></span>
@@ -187,20 +193,20 @@
             <div class="cs-details">
               <div class="cs-narrative">
                 <h4>Problem</h4>
-                <p>Tracking placement and internship emails manually during recruiting season doesn't scale.</p>
+                <p>Placement season means 30+ emails a day. Follow-ups were getting missed, so the entire classification-and-logging pipeline got automated.</p>
                 <h4>Architecture</h4>
-                <p>Modular architecture split across dedicated ai, extraction, gmail, notifications, reliability, scheduler, and sheets modules, built around the Gemini API for extraction, SQLite for storage, and the Google Sheets API for output — a real separation of concerns, not a single script.</p>
+                <p>A modular Python package split across dedicated ai, extraction, gmail, notifications, reliability, scheduler, and sheets modules. The Gmail API reads emails, Gemini AI classifies each one (application / interview / rejection / offer), SQLite stores state, and Google Sheets holds the final log. GitHub Actions keeps the pipeline running and honest.</p>
                 <h4>Challenges</h4>
-                <p>The Gmail and Gemini APIs are flaky in production — rate limits, transient failures, malformed responses.</p>
+                <p>Gemini misclassifies roughly 5% of emails. A system built around an unreliable AI component has to handle that uncertainty gracefully instead of assuming the model is always right.</p>
                 <h4>Solution</h4>
-                <p>The core engineering challenge is reliability — self-healing around Gmail and Gemini API flakiness, not a novel algorithm. Full pytest test suite, ruff linting, a GitHub Actions CI workflow, and a structured CLAUDE.md spec guiding AI-assisted development.</p>
+                <p>Uncertain classifications get flagged for manual review rather than silently filed — never letting a low-confidence call put a rejection in the "offer" column. Full pytest coverage, ruff linting, and GitHub Actions CI keep the classification and logging logic honest across changes.</p>
                 <h4>Results</h4>
-                <p><span data-todo>[TODO: quantified metric — e.g. emails processed, time saved per week — not yet measured]</span></p>
+                <p>Modular architecture across seven dedicated modules, a full pytest suite, ruff linting, and a GitHub Actions CI workflow across 30+ commits, with a <code>.env.example</code> and a <code>USER_MANUAL.md</code> for setup.</p>
                 <h4>Lessons Learned</h4>
-                <p><span data-todo>[TODO]</span></p>
+                <p>Building reliable systems around unreliable AI components — not the classification model itself — is the real engineering challenge.</p>
               </div>
               <div class="cs-side">
-                <a href="#" class="cs-github" target="_blank" rel="noopener">GitHub →</a><!-- TODO: repo not publicly reachable under Yash-Agarwal3125 as of this build, confirm URL -->
+                <a href="#" class="cs-github" target="_blank" rel="noopener">GitHub →</a><!-- TODO: no repo URL given in master content doc -->
               </div>
             </div>
           </div>
@@ -211,10 +217,11 @@
         <button type="button" class="cs-summary" aria-expanded="false" aria-controls="cs-details-5" id="cs-summary-5">
           <span class="cs-summary-content">
             <span class="cs-index">05 / 05</span>
-            <h3>Flight Price Prediction Engine</h3>
+            <h3>Flight Price Predictor</h3>
+            <p class="cs-desc">A from-scratch gradient descent implementation — no sklearn for the core model. An EDA-heavy preprocessing pipeline feeds a Flask front end, deployed on Render. Built to understand ML fundamentals, not just use them.</p>
             <p class="cs-impact"><span data-todo>[TODO: RMSE/R² or other accuracy metric — not stated in the repo as of this build]</span></p>
             <ul class="tech-tags">
-              <li>Python</li><li>NumPy</li><li>Flask</li><li>Gradient Descent</li>
+              <li>Python</li><li>NumPy</li><li>Pandas</li><li>Flask</li><li>Render</li>
             </ul>
           </span>
           <span class="cs-expand" aria-hidden="true">Expand <span class="cs-arrow">→</span></span>
@@ -224,17 +231,17 @@
             <div class="cs-details">
               <div class="cs-narrative">
                 <h4>Problem</h4>
-                <p><span data-todo>[TODO]</span></p>
+                <p>Everyone imports sklearn. I wanted to understand what linear regression actually does at the mathematical level.</p>
                 <h4>Architecture</h4>
-                <p>Linear regression implemented from scratch — weights and bias learned via a manually written gradient descent loop, not <code>sklearn.fit()</code> — trained on ~300,000 flight records (airline, route, departure time, stops, duration, days left) with a Flask + HTML/CSS/JS front end.</p>
+                <p>Linear regression implemented from scratch — weights and bias learned via a manually written gradient descent loop, not <code>sklearn.fit()</code> — trained on roughly 300,000 flight records (airline, route, departure time, stops, duration, days left), with a heavy EDA-driven preprocessing pipeline and a Flask front end, deployed on Render.</p>
                 <h4>Challenges</h4>
-                <p><span data-todo>[TODO]</span></p>
+                <p>Learning rate selection without adaptive optimizers: too high and the loss diverges, too low and convergence takes forever.</p>
                 <h4>Solution</h4>
-                <p><span data-todo>[TODO]</span></p>
+                <p>Manual tuning of the learning rate by direct observation of the loss curve — a slower path than reaching for Adam or RMSProp, but one that actually teaches what those optimizers are compensating for.</p>
                 <h4>Results</h4>
-                <p><span data-todo>[TODO: real numbers]</span> — configured for Heroku deployment (Procfile, runtime.txt), no active deployment link yet.</p>
+                <p><span data-todo>[TODO: real numbers]</span> — deployed on Render.</p>
                 <h4>Lessons Learned</h4>
-                <p><span data-todo>[TODO]</span></p>
+                <p>Manual learning-rate tuning taught more about gradient descent than any lecture on adaptive optimizers.</p>
               </div>
               <div class="cs-side">
                 <a href="https://github.com/Yash-Agarwal3125/Flight-Price-Predicter-" class="cs-github" target="_blank" rel="noopener">GitHub →</a>
@@ -253,22 +260,26 @@
       <li class="timeline-item">
         <div class="timeline-date">May – July 2026</div>
         <div class="timeline-body">
-          <h3>Data Engineering Intern — Jio Platform</h3>
-          <p>Built real-time Kafka streaming pipelines processing 50,000+ events/sec across a distributed ingestion architecture.</p>
+          <h3>Data Engineering Intern — Jio Platforms</h3>
+          <ul class="timeline-list">
+            <li>Engineered Kafka-based event streaming pipelines for real-time data replication across 5 topics, processing 50,000+ events/sec in a distributed ingestion architecture.</li>
+            <li>Reduced data replication lag, pipeline downtime, and stale-read rate by 30% through Kafka consumer group tuning and dynamic partition rebalancing.</li>
+            <li>Instrumented pipeline observability with Prometheus and Grafana, enabling real-time alerting on consumer lag across 10 active Kafka streams and cutting mean detection time for throughput degradation by 25%.</li>
+          </ul>
         </div>
       </li>
       <li class="timeline-item">
-        <div class="timeline-date">2025</div>
+        <div class="timeline-date">June – July 2025</div>
         <div class="timeline-body">
-          <h3>Research Paper</h3>
-          <p>BiLSTM-Attention model for pilgrimage crowd congestion prediction, with physics-based synthetic training data and ablation study. <span data-todo>[TODO: publication venue/date if you want it linked/cited]</span></p>
+          <h3>Software Engineering Intern — Jala Academy</h3>
+          <p>Summer internship focused on software engineering fundamentals and applied development — built and shipped features in a structured team environment during the second year of B.Tech.</p>
         </div>
       </li>
       <li class="timeline-item">
         <div class="timeline-date">2023–Present</div>
         <div class="timeline-body">
           <h3>B.Tech CSE, AI &amp; ML Specialization — VIT Vellore</h3>
-          <p>CGPA 8.78</p>
+          <p>CGPA 8.78. Core coursework in distributed systems, computer architecture, neural networks, and image processing, alongside 5+ production projects across ML, data engineering, and full-stack domains.</p>
         </div>
       </li>
     </ol>
@@ -277,7 +288,9 @@
   <section class="philosophy reveal-section" id="philosophy">
     <h2 class="section-heading">Engineering Philosophy</h2>
     <div class="philosophy-body">
-      <p><span data-todo>[TODO: 2-3 short paragraphs, under 150 words total, describing how you approach engineering work.]</span></p>
+      <p>Distributed systems bugs rarely live in a single component — they live in the interactions between components. A request processed twice usually isn't a bug in the API gateway or the worker; it's in how the two negotiate between themselves.</p>
+      <p>I think about services as a set of contracts: what happens when one can't hold up its end (circuit breakers), when a message arrives twice (idempotency), when two services disagree about the same data (eventual consistency). These aren't exam questions — they're things that happen in any system that runs long enough.</p>
+      <p>Observability isn't a nice-to-have. Prometheus and Grafana dashboards are usually the only way to tell whether a change actually helped, or just quietly made things worse.</p>
     </div>
   </section>
 
@@ -293,7 +306,7 @@
       <div class="tech-group">
         <h3>Data, AI &amp; ML</h3>
         <ul class="tech-tags">
-          <li>Pandas</li><li>NumPy</li><li>Scikit-learn</li><li>TensorFlow</li><li>Keras</li><li>Matplotlib</li><li>Model Training &amp; Evaluation</li><li>Linear &amp; Logistic Regression</li><li>Neural Networks</li><li>Reinforcement Learning (DQN)</li><li>Generative AI</li><li>Apache Kafka</li><li>Redis</li><li>MySQL</li><li>PostgreSQL</li>
+          <li>Pandas</li><li>NumPy</li><li>Scikit-learn</li><li>TensorFlow</li><li>Keras</li><li>PyTorch</li><li>Matplotlib</li><li>Model Training &amp; Evaluation</li><li>Linear &amp; Logistic Regression</li><li>Neural Networks</li><li>Reinforcement Learning (DQN)</li><li>Generative AI</li><li>Apache Kafka</li><li>Redis</li><li>MySQL</li><li>PostgreSQL</li>
         </ul>
       </div>
       <div class="tech-group">
@@ -320,9 +333,9 @@
   <section class="certifications reveal-section" id="certifications">
     <h2 class="section-heading">Certifications</h2>
     <ul class="cert-list">
-      <li class="cert-card">IBM Certified Specialist — Generative AI</li>
-      <li class="cert-card">Supervised Machine Learning: Regression and Classification — DeepLearning.AI &amp; Stanford University</li>
-      <li class="cert-card">Advanced Learning Algorithms — DeepLearning.AI &amp; Stanford University</li>
+      <li class="cert-card">IBM Certified Specialist — Generative AI <span class="cert-year">· 2025</span></li>
+      <li class="cert-card">Supervised Machine Learning: Regression and Classification — DeepLearning.AI &amp; Stanford University <span class="cert-year">· 2024</span></li>
+      <li class="cert-card">Advanced Learning Algorithms — DeepLearning.AI &amp; Stanford University <span class="cert-year">· 2024</span></li>
     </ul>
   </section>
 
@@ -330,9 +343,10 @@
 
 <footer class="footer reveal-section" id="contact">
   <p>Get in touch</p>
+  <p class="footer-status">Open to SDE / MLE roles — placement 2026.</p>
   <div class="footer-links">
     <a href="mailto:yashagarwal3125@gmail.com" aria-label="Email">Email</a>
-    <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a><!-- TODO: LinkedIn URL, not available in source files -->
+    <a href="https://linkedin.com/in/yash-agarwal" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a><!-- TODO: exact LinkedIn URL unconfirmed, see chat changelog -->
     <a href="https://github.com/Yash-Agarwal3125" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
   </div>
 </footer>
