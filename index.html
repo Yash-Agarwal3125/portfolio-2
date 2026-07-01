@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yash Agarwal | Software Engineer</title>
+    <meta name="description" content="Portfolio of Yash Agarwal, Software Engineer specializing in AI & Machine Learning.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Script to prevent FOUC (Flash of Unstyled Content) for Theme -->
+    <script>
+        const storedTheme = localStorage.getItem('theme');
+        const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+        if (storedTheme === 'light' || (!storedTheme && systemPrefersLight)) {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">Yash Agarwal</a>
+            <div class="nav-links">
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <a href="#resume" class="btn btn-primary btn-nav">Resume</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <p class="hero-greeting">Yash Agarwal</p>
+                    <h1 class="hero-title">Software Engineer<br><span class="hero-subtitle">AI & Machine Learning</span></h1>
+                    <p class="hero-description">
+                        Building scalable backend systems, intelligent applications, and developer tools with a focus on reliability, performance, and thoughtful engineering.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">View Projects</a>
+                        <a href="#resume" class="btn btn-secondary">Download Resume</a>
+                    </div>
+                    <div class="hero-availability">
+                        <span class="status-dot"></span>
+                        <p>Available for Software Engineering opportunities</p>
+                    </div>
+                </div>
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="blueprint-visual">
+                        <div class="bp-grid"></div>
+                        <div class="bp-circle bp-circle-1"></div>
+                        <div class="bp-circle bp-circle-2"></div>
+                        <div class="bp-circle bp-circle-3"></div>
+                        <div class="bp-axis bp-axis-x"></div>
+                        <div class="bp-axis bp-axis-y"></div>
+                        <div class="bp-rect bp-rect-1"></div>
+                        <div class="bp-rect bp-rect-2"></div>
+                        <div class="bp-intersection bp-int-1"></div>
+                        <div class="bp-intersection bp-int-2"></div>
+                        <div class="bp-intersection bp-int-3"></div>
+                        <div class="bp-intersection bp-int-4"></div>
+                        <div class="bp-measure">
+                            <div class="bp-measure-line"></div>
+                            <span class="bp-measure-text">SYS.01</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects Section -->
+        <section class="projects" id="projects">
+            <div class="section-container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <article class="project-card group">
+                        <div class="project-content">
+                            <h3 class="project-title">RL Autonomous Driving</h3>
+                            <p class="project-desc">A deep reinforcement learning agent trained to navigate complex urban environments using PyTorch and CARLA simulator.</p>
+                            <div class="project-tech">
+                                <span class="tech-chip">Python</span>
+                                <span class="tech-chip">PyTorch</span>
+                                <span class="tech-chip">CARLA</span>
+                            </div>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="action-btn" aria-label="View on GitHub">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                GitHub
+                            </a>
+                            <a href="#" class="action-btn primary-action">
+                                Case Study
+                                <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article class="project-card group">
+                        <div class="project-content">
+                            <h3 class="project-title">Kafka Banking System</h3>
+                            <p class="project-desc">High-throughput, event-driven banking transaction processor capable of handling 10k+ events per second with zero data loss.</p>
+                            <div class="project-tech">
+                                <span class="tech-chip">Java</span>
+                                <span class="tech-chip">Apache Kafka</span>
+                                <span class="tech-chip">Spring Boot</span>
+                            </div>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="action-btn" aria-label="View on GitHub">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                GitHub
+                            </a>
+                            <a href="#" class="action-btn primary-action">
+                                Case Study
+                                <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Project 3 -->
+                    <article class="project-card group">
+                        <div class="project-content">
+                            <h3 class="project-title">Placement Mail Tracker</h3>
+                            <p class="project-desc">Automated pipeline that parses university placement emails, categorizes them using NLP, and syncs to a centralized dashboard.</p>
+                            <div class="project-tech">
+                                <span class="tech-chip">Go</span>
+                                <span class="tech-chip">PostgreSQL</span>
+                                <span class="tech-chip">React</span>
+                            </div>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="action-btn" aria-label="View on GitHub">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                GitHub
+                            </a>
+                            <a href="#" class="action-btn primary-action">
+                                Case Study
+                                <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
