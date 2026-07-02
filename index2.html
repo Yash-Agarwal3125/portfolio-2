@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yash Agarwal — Data Engineer &amp; ML Developer</title>
+<meta name="description" content="4th year B.Tech CSE + AI/ML at VIT Vellore. Data Engineering Intern at Jio Platforms. Building distributed systems, ML models, and full-stack applications. Open to SDE/MLE roles.">
+<meta name="author" content="Yash Agarwal">
+<meta name="theme-color" content="#0A0E14">
+<meta property="og:title" content="Yash Agarwal — Data Engineer &amp; ML Developer">
+<meta property="og:description" content="4th year CS student. Jio Platforms intern. Building things that scale.">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index2.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="statusbar">
+  <div class="statusbar-inner">
+    <span class="prompt mono">yash@portfolio:~$</span>
+    <nav class="statusnav mono" aria-label="Primary">
+      <a href="#about">about</a>
+      <a href="#services">projects</a>
+      <a href="#pipeline">experience</a>
+      <a href="#notes">notes</a>
+      <a href="#contact">contact</a>
+      <a href="/assets/resume.pdf" target="_blank" rel="noopener" class="statusnav-resume">resume.pdf</a><!-- TODO: resume file not yet in /assets -->
+    </nav>
+    <span class="statusbar-right mono">
+      <span class="dot dot-green" aria-hidden="true"></span>OPEN_TO_HIRE
+      <span class="clock" id="clock" aria-label="Local time in India"></span>
+    </span>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-labelledby="hero-name">
+    <p class="mono eyebrow">// SYSTEM ONLINE · PLACEMENT 2026</p>
+    <h1 id="hero-name">YASH<br>AGARWAL</h1>
+    <p class="hero-tagline mono">DATA ENGINEER · DISTRIBUTED SYSTEMS · BUILDER</p>
+
+    <div class="bootlog mono panel" role="group" aria-label="Introduction, styled as a terminal session">
+      <p class="boot-line" style="--i:0"><span class="boot-cmd">$ whoami</span></p>
+      <p class="boot-line" style="--i:1">4th year B.Tech CSE + AI/ML Specialization — VIT Vellore · CGPA 8.78</p>
+      <p class="boot-line" style="--i:2"><span class="boot-cmd">$ cat ./status</span></p>
+      <p class="boot-line" style="--i:3"><span class="ok">[OK]</span> internship — Jio Platforms, Mumbai · data engineering · May–July 2026</p>
+      <p class="boot-line" style="--i:4"><span class="ok">[OK]</span> open to SDE / MLE roles — placement 2026</p>
+      <p class="boot-line" style="--i:5"><span class="boot-cmd">$ ./portfolio --start</span> <span class="muted">loading projects... done (5 found)</span></p>
+    </div>
+
+    <div class="streamviz panel">
+      <canvas id="stream" width="900" height="90" aria-hidden="true"></canvas>
+      <p class="streamviz-caption mono">throughput.viz — decorative stream. The real one processed 50,000+ events/sec at Jio.</p>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section reveal" id="about" aria-labelledby="about-h">
+    <h2 class="section-label mono" id="about-h">[01] ABOUT</h2>
+    <div class="about-grid stagger">
+      <div class="panel stat-card">
+        <p class="stat mono">8.78</p>
+        <p class="stat-sub mono">CGPA · VIT VELLORE</p>
+        <p class="stat-body">4th year B.Tech CSE + AI/ML at VIT Vellore. Building production systems — Kafka pipelines at 50K events/sec, distributed inference platforms, DQN agents. I ship things that work.</p>
+      </div>
+      <div class="panel stat-card">
+        <p class="stat mono">5+</p>
+        <p class="stat-sub mono">PRODUCTION PROJECTS</p>
+        <p class="stat-body">Interning at Jio Platforms, Mumbai — engineered Kafka streaming pipelines processing 50,000+ events/sec. Reduced replication lag by 30%. Open to SDE / MLE roles, placement 2026.</p>
+      </div>
+      <div class="panel bio-card">
+        <p class="stat-sub mono">THE PERSON BEHIND THE CODE</p>
+        <p class="stat-body">Born and brought up in Hyderabad — a city of great food, fast-paced streets, and an energy that's hard to forget. Family roots from Rajasthan, so somewhere along the way I picked up both Hyderabadi warmth and Rajasthani stubbornness — a useful combination when you're three hours into a bug you refuse to give up on.</p>
+        <p class="stat-body">Outside of code: I travel when I can, I watch Game of Thrones and Brooklyn Nine-Nine on repeat, and I'm firmly convinced that dark chocolate brownies and cold coffee are the two most important food groups. I like building things, solving problems that look impossible at first glance, and learning something new every week. That's probably why software engineering feels less like work and more like the most elaborate hobby I've ever accidentally turned into a career.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS AS SERVICES ============ -->
+  <section class="section reveal" id="services" aria-labelledby="services-h">
+    <h2 class="section-label mono" id="services-h">[02] RUNNING SERVICES <span class="muted">— 5 projects</span></h2>
+
+    <details class="proj panel">
+      <summary>
+        <span class="proj-head">
+          <span class="proj-index mono">svc-01</span>
+          <span class="proj-tag mono">DISTRIBUTED SYSTEMS</span>
+          <span class="proj-flag mono" title="flagship project">★ FLAGSHIP</span>
+        </span>
+        <span class="proj-title">Distributed AI Inference Platform</span>
+        <span class="proj-desc">12 Dockerized microservices with async request queuing via FastAPI + Redis. Kafka-based task routing hitting 50 req/sec at 50ms p99. Adaptive Q-Learning scheduler for dynamic batch optimization.</span>
+        <span class="proj-metrics mono">
+          <span>50 req/sec</span><span>50ms p99</span><span>12 services</span><span>Q-Learning scheduler</span><span>Locust-tested</span>
+        </span>
+        <span class="proj-stack mono">Python · FastAPI · Docker · Redis · Kafka · Prometheus · Grafana</span>
+        <span class="proj-toggle mono" aria-hidden="true"></span>
+      </summary>
+      <div class="proj-body">
+        <h3 class="mono">// problem</h3>
+        <p>University teaches you to train models. Nobody teaches you what happens when 50 people hit your model endpoint at the same time.</p>
+        <h3 class="mono">// what was built</h3>
+        <p>12 Dockerized microservices. FastAPI for async request queuing. Redis for the cache layer. Kafka for durable task routing. A Q-Learning agent as the scheduler — it learns optimal batching strategy from the system's own behaviour over time. Circuit breakers, heartbeat monitoring, intelligent worker selection. Prometheus scrapes every service; Grafana visualises everything.</p>
+        <h3 class="mono">// the hard part</h3>
+        <p>The Q-Learning scheduler's chicken-and-egg problem — the agent needs to explore to learn, but random actions in a production-adjacent system mean random latency spikes. Tuning epsilon-greedy exploration without making the system unusable during training. Also: distributed state race conditions — Redis MULTI/EXEC transactions and careful key namespacing to prevent two services updating the same key simultaneously.</p>
+        <h3 class="mono">// what I learned</h3>
+        <p>Distributed systems bugs live in the interactions between components, not in the components themselves. Observability before features — Prometheus + Grafana was the only way to catch most bugs.</p>
+        <p class="proj-link mono"><a href="https://github.com/Yash-Agarwal3125/AI-Inference-Platform" target="_blank" rel="noopener">→ github.com/Yash-Agarwal3125/AI-Inference-Platform</a></p>
+      </div>
+    </details>
+
+    <details class="proj panel">
+      <summary>
+        <span class="proj-head">
+          <span class="proj-index mono">svc-02</span>
+          <span class="proj-tag mono">FULLSTACK · BACKEND</span>
+        </span>
+        <span class="proj-title">IPL-Bhai-Log</span>
+        <span class="proj-desc">Full-stack sports prediction platform. SQLAlchemy row-level locking prevents race conditions on concurrent bets. JWT auth, bcrypt, rate limiting, Alembic migrations. ACID-compliant transaction engine.</span>
+        <span class="proj-metrics mono">
+          <span>full ACID compliance</span><span>SlowAPI rate limiting</span><span>APScheduler live sync</span><span>security tests gate commits</span>
+        </span>
+        <span class="proj-stack mono">Python · FastAPI · React · MySQL · SQLAlchemy · JWT · Alembic</span>
+        <span class="proj-toggle mono" aria-hidden="true"></span>
+      </summary>
+      <div class="proj-body">
+        <h3 class="mono">// problem</h3>
+        <p>Wanted a full-stack project with real engineering problems — not just CRUD. Betting has concurrency, auth, settlement logic.</p>
+        <h3 class="mono">// what was built</h3>
+        <p>FastAPI backend + SQLAlchemy ORM + Alembic migrations. React/Vite frontend. JWT + bcrypt auth. APScheduler syncs live match data. The critical piece: <code>SELECT ... FOR UPDATE</code> row-level locking on concurrent wallet updates — prevents two users from both seeing the same balance, both writing, and one bet disappearing.</p>
+        <h3 class="mono">// the hard part</h3>
+        <p>Race conditions on concurrent wallet updates. Two users bet simultaneously → both reads see the same balance → both writes succeed → one bet silently disappears. Row-level locking fixes it. Genuinely tricky to test correctly.</p>
+        <p class="proj-link mono"><a href="https://github.com/Yash-Agarwal3125/IPL-Bhai-Log" target="_blank" rel="noopener">→ github.com/Yash-Agarwal3125/IPL-Bhai-Log</a></p><!-- TODO: exact repo name unconfirmed per MASTER_CONTENT -->
+      </div>
+    </details>
+
+    <details class="proj panel">
+      <summary>
+        <span class="proj-head">
+          <span class="proj-index mono">svc-03</span>
+          <span class="proj-tag mono">REINFORCEMENT LEARNING</span>
+          <span class="proj-flag mono" title="deep case study">★ DEEP CASE STUDY</span>
+        </span>
+        <span class="proj-title">Self-Driving DQN Car</span>
+        <span class="proj-desc">Deep Q-Network agent for autonomous navigation using LiDAR sensor data in a Pygame simulation. Complex reward function for lane-keeping + collision avoidance. 50 commits of iterative RL research.</span>
+        <span class="proj-metrics mono">
+          <span>98% navigation rate in test epochs</span><span>8-ray LiDAR sim</span><span>DQN → D3QN → A3C</span><span>10k replay buffer</span><span>50 commits / 4 months</span>
+        </span>
+        <span class="proj-stack mono">Python · TensorFlow · Keras · Pygame · DQN · Google Colab</span>
+        <span class="proj-toggle mono" aria-hidden="true"></span>
+      </summary>
+      <div class="proj-body">
+        <h3 class="mono">// problem</h3>
+        <p>Every RL tutorial starts with CartPole. I wanted to build the environment, design the reward function, choose the architecture — everything from scratch.</p>
+        <h3 class="mono">// what was built</h3>
+        <p>Pygame top-down road simulation. 8 LiDAR rays as state. DQN with experience replay + target network. Actions: steer left/right, accelerate, brake. Later experimented with D3QN and A3C.</p>
+        <h3 class="mono">// the hard parts</h3>
+        <p>1 — Reward function design: the first attempt made the agent spin in circles, the second made it drive straight at max speed ignoring corners; the third (smooth velocity + lane deviation penalty + steering change penalty) finally worked. Took 3 weeks.</p>
+        <p>2 — Hyperparameter sensitivity: DQNs are brittle. Kept a spreadsheet of every experiment. 50 commits, mostly hyperparameter runs.</p>
+        <p>3 — Sim-to-real gap: LiDAR rays clipping through obstacle corners due to floating-point precision. The agent learned to exploit the bug. Fixed it, and the agent had to relearn. A week gone.</p>
+        <h3 class="mono">// what I learned</h3>
+        <p>Reward function design is 80% of the work in RL. Iteration speed beats architecture choices. Log everything.</p>
+        <p class="proj-link mono"><a href="https://github.com/Yash-Agarwal3125/Neural-Networks-Car-Project" target="_blank" rel="noopener">→ github.com/Yash-Agarwal3125/Neural-Networks-Car-Project</a></p>
+      </div>
+    </details>
+
+    <details class="proj panel">
+      <summary>
+        <span class="proj-head">
+          <span class="proj-index mono">svc-04</span>
+          <span class="proj-tag mono">AUTOMATION · AI</span>
+        </span>
+        <span class="proj-title">Placement Mail Tracker</span>
+        <span class="proj-desc">Modular Gmail → Gemini AI → Google Sheets placement pipeline. pytest test suite, GitHub Actions CI, ruff linting. The most production-grade repo: tests + CI + docs + separation of concerns.</span>
+        <span class="proj-metrics mono">
+          <span>pytest suite</span><span>GitHub Actions CI</span><span>ruff linting</span><span>30+ commits</span>
+        </span>
+        <span class="proj-stack mono">Python · Gemini API · Gmail API · Sheets API · SQLite · pytest</span>
+        <span class="proj-toggle mono" aria-hidden="true"></span>
+      </summary>
+      <div class="proj-body">
+        <h3 class="mono">// problem</h3>
+        <p>Placement season = 30+ emails/day. Was missing follow-ups. Automated the entire classification → logging pipeline.</p>
+        <h3 class="mono">// what was built</h3>
+        <p>A modular Python package. The Gmail API reads emails → Gemini AI classifies (application / interview / rejection / offer) → SQLite stores state → Google Sheets gets the final log. GitHub Actions keeps it running and honest. Ships with <code>.env.example</code> and a <code>USER_MANUAL.md</code>.</p>
+        <h3 class="mono">// the hard part</h3>
+        <p>Gemini misclassification (~5% of the time). The system needs to handle uncertainty gracefully — flag for manual review, not silently put a rejection in the 'offer' column. Building reliable systems around unreliable AI components is the real engineering challenge.</p>
+        <!-- TODO: no public repo URL exists in MASTER_CONTENT for this project -->
+        <p class="proj-link mono muted">repo link pending<span data-todo> [TODO: GitHub URL not listed in MASTER_CONTENT]</span></p>
+      </div>
+    </details>
+
+    <details class="proj panel">
+      <summary>
+        <span class="proj-head">
+          <span class="proj-index mono">svc-05</span>
+          <span class="proj-tag mono">MACHINE LEARNING</span>
+        </span>
+        <span class="proj-title">Flight Price Predictor</span>
+        <span class="proj-desc">From-scratch gradient descent implementation (no sklearn for the core model). EDA-heavy preprocessing pipeline, deployed on Render. Built to understand ML fundamentals, not just use them.</span>
+        <span class="proj-metrics mono">
+          <span>NumPy-only core model</span><span>deployed on Render</span><span>heavy EDA pipeline</span>
+        </span>
+        <span class="proj-stack mono">Python · NumPy · Pandas · Flask · Render</span>
+        <span class="proj-toggle mono" aria-hidden="true"></span>
+      </summary>
+      <div class="proj-body">
+        <h3 class="mono">// problem</h3>
+        <p>Everyone imports sklearn. Wanted to understand what linear regression actually does at the mathematical level.</p>
+        <h3 class="mono">// the hard part</h3>
+        <p>Learning rate selection without adaptive optimisers. Too high: loss diverges. Too low: convergence takes forever. Manual tuning taught more than any lecture.</p>
+        <p><span data-todo>[TODO: RMSE/R² or other accuracy metric — not stated in MASTER_CONTENT]</span></p>
+        <p class="proj-link mono"><a href="https://github.com/Yash-Agarwal3125/Flight-Price-Predicter-" target="_blank" rel="noopener">→ github.com/Yash-Agarwal3125/Flight-Price-Predicter-</a></p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ EXPERIENCE AS PIPELINE LOG ============ -->
+  <section class="section reveal" id="pipeline" aria-labelledby="pipeline-h">
+    <h2 class="section-label mono" id="pipeline-h">[03] PIPELINE LOG <span class="muted">— experience</span></h2>
+    <ol class="log stagger">
+      <li class="log-entry panel">
+        <p class="log-meta mono"><span class="ok">[2026-05 → 2026-07]</span> Jio Platforms, Mumbai — Data Engineering Intern</p>
+        <ul class="log-body">
+          <li>Engineered Kafka-based event streaming pipelines for real-time data replication across 5 topics, processing 50,000+ events/sec in a distributed ingestion architecture.</li>
+          <li>Designed and validated event-driven data ingestion workflows; reduced data replication lag, pipeline downtime, and stale-read rate by 30% through Kafka consumer group tuning and dynamic partition rebalancing across 5 topics.</li>
+          <li>Instrumented pipeline observability using Prometheus and Grafana dashboards, enabling real-time alerting on consumer lag across 10 active Kafka data streams and reducing mean detection time for throughput degradation by 25%.</li>
+        </ul>
+      </li>
+      <li class="log-entry panel">
+        <p class="log-meta mono"><span class="ok">[2025-06 → 2025-07]</span> Jala Academy (Remote) — Software Engineering Intern</p>
+        <ul class="log-body">
+          <li>Summer internship focused on software engineering fundamentals and applied development. Built and shipped features in a structured team environment during second year of B.Tech.</li>
+        </ul>
+      </li>
+      <li class="log-entry panel">
+        <p class="log-meta mono"><span class="ok">[2023 → now]</span> VIT Vellore — B.Tech CSE + AI/ML · CGPA 8.78</p>
+        <ul class="log-body">
+          <li>Specialization in AI &amp; Machine Learning. Core coursework in distributed systems, computer architecture, neural networks, and image processing. 5+ production projects across ML, data engineering, and full-stack domains.</li>
+        </ul>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ SKILLS AS CONFIG ============ -->
+  <section class="section reveal" id="stack" aria-labelledby="stack-h">
+    <h2 class="section-label mono" id="stack-h">[04] STACK.CONFIG</h2>
+    <pre class="config panel mono" tabindex="0"><code>stack:
+  languages:      [python, java, cpp, sql, javascript-es6]
+  ml:             [tensorflow, keras, pytorch, scikit-learn, pandas, numpy]
+  ml_domains:     [neural-networks, reinforcement-learning-dqn, generative-ai, gemini-api]
+  streaming:      [apache-kafka, redis]
+  databases:      [postgresql, mysql, sqlalchemy, sqlite]
+  backend:        [fastapi, flask, node, restful-apis]
+  frontend:       [react, html5, css3]
+  observability:  [prometheus, grafana]
+  devops:         [docker, git, github-actions, ci-cd]
+  testing:        [pytest, unit-and-integration]
+  practices:      [agile, sdlc, event-driven-architecture]</code></pre>
+  </section>
+
+  <!-- ============ CERTIFICATIONS ============ -->
+  <section class="section reveal" id="certs" aria-labelledby="certs-h">
+    <h2 class="section-label mono" id="certs-h">[05] CERTIFICATIONS</h2>
+    <ul class="cert-grid stagger">
+      <li class="panel cert"><span class="mono muted">2025 · IBM</span><br>IBM Certified Specialist — Generative AI</li>
+      <li class="panel cert"><span class="mono muted">2024 · DeepLearning.AI × Stanford</span><br>Supervised ML: Regression &amp; Classification</li>
+      <li class="panel cert"><span class="mono muted">2024 · DeepLearning.AI × Stanford</span><br>Advanced Learning Algorithms</li>
+    </ul>
+  </section>
+
+  <!-- ============ SIDEQUESTS AS BACKGROUND PROCESSES ============ -->
+  <section class="section reveal" id="procs" aria-labelledby="procs-h">
+    <h2 class="section-label mono" id="procs-h">[06] BACKGROUND PROCESSES <span class="muted">— beyond the code</span></h2>
+    <ul class="proc-grid stagger">
+      <li class="panel proc">
+        <p class="proc-head mono">🏏 CRICKET WATCHER <span class="chip">ACTIVE</span></p>
+        <p>Loud in the stands, loud in group chats. Will explain the DRS system to anyone who makes the mistake of asking.</p>
+      </li>
+      <li class="panel proc">
+        <p class="proc-head mono">⚔️ GAME OF THRONES <span class="chip">OBSESSED</span></p>
+        <p>House Stark loyalist. Still processing the ending. The Red Wedding was a data integrity failure — nobody validated those foreign keys.</p>
+      </li>
+      <li class="panel proc">
+        <p class="proc-head mono">☕ COLD COFFEE + BROWNIES <span class="chip">CRITICAL</span></p>
+        <p>The actual stack powering every project on this page. Cold brew first, dark chocolate brownie second, then the terminal.</p>
+      </li>
+      <li class="panel proc">
+        <p class="proc-head mono">🌙 2AM BUILDS <span class="chip">ALWAYS ON</span></p>
+        <p>Some people sleep. I open a new tab, think "how hard can it be", and end up with 3000 lines of game logic hidden in a VS Code shell.</p>
+      </li>
+      <li class="panel proc">
+        <p class="proc-head mono">🎵 MUSIC <span class="chip">PLAYING</span></p>
+        <p>Something always playing. Genre depends entirely on whether the code is compiling or throwing errors.</p>
+      </li>
+      <li class="panel proc">
+        <p class="proc-head mono">🏃 RUNNING <span class="chip">IN PROGRESS</span></p>
+        <p>Recently started. Turns out debugging at a desk for 6 hours and then running 5km are both activities where you question your life choices.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ============ NOTES / BLOG ============ -->
+  <section class="section reveal" id="notes" aria-labelledby="notes-h">
+    <h2 class="section-label mono" id="notes-h">[07] NOTES <span class="muted">— long-form writeups</span></h2>
+
+    <details class="note panel">
+      <summary>
+        <span class="note-meta mono">July 2025 · 6 min · #reinforcement-learning #dqn #lessons</span>
+        <span class="note-title">Why I built a self-driving car with no tutorial and too much confidence</span>
+        <span class="proj-toggle mono" aria-hidden="true"></span>
+      </summary>
+      <div class="note-body">
+        <p>I want to be honest about how this project started: I watched a YouTube video about reinforcement learning, thought "that doesn't look too hard", and opened a new Python file. That was the first mistake.</p>
+        <h3 class="mono">// the setup</h3>
+        <p>I'd just finished the DeepLearning.AI ML courses and wanted to build something that used RL for real — not a Gymnasium CartPole tutorial, not a cloned notebook. I wanted to design the environment, the reward function, the architecture. Everything.</p>
+        <p>The project: a self-driving car simulation. Top-down view, Pygame environment, LiDAR sensors, a DQN agent that would learn to navigate without me telling it how. Simple enough, right?</p>
+        <h3 class="mono">// week one: the environment</h3>
+        <p>Building the Pygame simulation was actually fun. A road, some obstacles, a car with 8 LiDAR rays projecting outward. The rays would detect how far away obstacles were and return those distances as the state. The car could steer left, right, accelerate, or brake. By the end of week one I had a working simulation. The car moved. The sensors worked. I felt good about this.</p>
+        <h3 class="mono">// week two: the reward function (where dreams go to die)</h3>
+        <p>Here is something nobody tells you clearly enough about reinforcement learning: the reward function is harder than the neural network.</p>
+        <p>My first reward function: +1 for being in the lane, -10 for collision. Clean. Intuitive. Completely wrong. The agent learned to park itself in the middle of the lane and rotate slowly. Technically maximising reward. Completely useless.</p>
+        <p>Second attempt: reward proportional to speed. The agent immediately learned to drive in a straight line as fast as possible and ignore every corner. Also technically correct. Also useless.</p>
+        <p>Third attempt — the one that finally worked — had four components: penalise lane deviation proportionally, reward smooth forward velocity (not maximum velocity), heavy collision penalty, and a small penalty for excessive steering changes. This last one was key. Without penalising jerky steering, the agent would twitch left-right constantly. The steering penalty made it prefer smooth trajectories.</p>
+        <p>This took three weeks to get right. Three weeks where the agent was doing increasingly creative wrong things.</p>
+        <h3 class="mono">// the hyperparameter grind</h3>
+        <p>DQNs are sensitive. Learning rate, epsilon decay rate, replay buffer size, target network update frequency — each one affects training stability in ways that interact with each other. There's no formula. You run an experiment, watch what happens, form a hypothesis, change one thing, run again.</p>
+        <p>I kept a spreadsheet. Every experiment, what I changed, what the agent did. 50 commits over 4 months, most of them labelled something like "try lr=0.0005 with slower epsilon decay."</p>
+        <h3 class="mono">// what I actually learned</h3>
+        <p>Not what I expected to learn. I expected to learn about neural network architectures. Instead I learned:</p>
+        <p>1. Reward function design is the actual skill. The network will learn whatever you incentivise. If it's doing something weird, your reward function is probably rewarding that weird thing.</p>
+        <p>2. Iteration speed matters more than architecture choices. Running more experiments faster is more valuable than spending three days designing the perfect network.</p>
+        <p>3. Logging everything is not optional. The only way I caught bugs was by having records of what the agent did under different conditions.</p>
+        <p>The project is marked "Proof of Concept" in the README because that's honest. The agent navigates the simulation. It doesn't generalise to anything else. But I understand RL at a level I couldn't have gotten from any tutorial, because I made every possible mistake myself.</p>
+        <p>That's probably the best way to learn anything.</p>
+      </div>
+    </details>
+
+    <details class="note panel">
+      <summary>
+        <span class="note-meta mono">June 2026 · 5 min · #distributed-systems #kafka #engineering</span>
+        <span class="note-title">How I think about distributed systems as a 4th year student</span>
+        <span class="proj-toggle mono" aria-hidden="true"></span>
+      </summary>
+      <div class="note-body">
+        <p>I spent two months at Jio Platforms this summer working on Kafka-based data pipelines. Before that, I'd built a distributed AI inference platform as a learning project. Between the two, I've developed some opinions about distributed systems — not expert opinions, but the kind you only get from watching things break in ways your textbook never mentioned.</p>
+        <h3 class="mono">// what university teaches you</h3>
+        <p>University taught me that distributed systems are about consistency, availability, and partition tolerance — the CAP theorem. It taught me about consensus algorithms and replication strategies in the abstract. It taught me to think about distributed systems as a theoretical problem.</p>
+        <p>None of that was wrong. But it was incomplete in a specific way: it didn't teach me what 50,000 events per second actually feels like to manage.</p>
+        <h3 class="mono">// what production taught me</h3>
+        <p>At Jio, the Kafka pipelines I worked on processed over 50,000 events per second across 5 topics. That number sounds impressive. What it actually means is: every configuration decision has consequences that show up immediately in monitoring.</p>
+        <p>Consumer group tuning, for instance. In theory, you add more consumers to a group to increase throughput. In practice, adding consumers changes how partitions are assigned, which triggers rebalances, which causes processing pauses. We reduced replication lag by 30% not by adding resources, but by tuning how existing consumers were configured. The insight was operational, not architectural.</p>
+        <p>Prometheus and Grafana dashboards weren't optional. Without them, I would have had no idea whether a change I made helped or hurt. Observability is not a nice-to-have — it's how you know what your system is actually doing.</p>
+        <h3 class="mono">// the thing about distributed bugs</h3>
+        <p>Here's what's different about bugs in distributed systems: they're usually not in any single component. They're in the interaction between components.</p>
+        <p>In my inference platform project, I had a bug where requests would occasionally get processed twice. The bug wasn't in the API gateway. It wasn't in the worker. It was in how the Kafka consumer acknowledged messages — specifically, in an edge case where a worker would crash after processing a message but before committing the offset, so Kafka would redeliver it to another worker.</p>
+        <p>That bug required understanding three components simultaneously to find. That's what makes distributed systems hard — not the components, but their interactions.</p>
+        <h3 class="mono">// a mental model that actually helps</h3>
+        <p>I've started thinking about distributed systems as a series of contracts. Each service makes a contract with the services it talks to: "I will accept requests in this format, process them, and respond in this way." The interesting engineering questions are:</p>
+        <p>— What happens when a service can't keep its contract? (Circuit breakers)<br>— What happens when a message is delivered twice? (Idempotency)<br>— What happens when two services have inconsistent views of the same data? (Eventual consistency)</p>
+        <p>These aren't exam questions. They're things that will happen in any system that runs long enough.</p>
+        <h3 class="mono">// what I'd tell myself a year ago</h3>
+        <p>Build something that actually breaks. Not a tutorial project — something with real concurrency, real message queues, real failure modes. The textbook teaches you the vocabulary. Only building something teaches you the language.</p>
+        <p>The inference platform I built broke constantly in the early stages. Every break taught me something the theory didn't. The Jio internship confirmed most of it.</p>
+        <p>I'm still a student. But I think I understand distributed systems differently than I did before I wrote any of this code. That difference came entirely from building things and watching them fail.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ CURRENTLY BUILDING ============ -->
+  <aside class="strip reveal" aria-label="Currently building">
+    <p class="mono"><span class="dot dot-green" aria-hidden="true"></span>currently_building: "Grinding DSA for placements — because the system design round won't interview itself."</p>
+  </aside>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section reveal contact" id="contact" aria-labelledby="contact-h">
+    <h2 class="section-label mono" id="contact-h">[08] CONTACT</h2>
+    <p class="contact-big">LET'S BUILD.</p>
+    <p class="mono contact-avail"><span class="dot dot-green" aria-hidden="true"></span>Open to opportunities</p>
+    <p class="mono contact-tags">OPEN TO HIRE · 2026 · SDE / MLE · PLACEMENT</p>
+    <div class="contact-ctas">
+      <a class="cta cta-primary mono" href="/assets/resume.pdf" target="_blank" rel="noopener">RESUME ↗</a><!-- TODO: resume file not yet in /assets -->
+      <a class="cta mono" href="https://github.com/Yash-Agarwal3125" target="_blank" rel="noopener">GITHUB →</a>
+      <a class="cta mono" href="https://linkedin.com/in/yash-agarwal" target="_blank" rel="noopener">LINKEDIN →</a><!-- TODO: exact LinkedIn URL unconfirmed per MASTER_CONTENT -->
+      <a class="cta mono" href="mailto:yashagarwal3125@gmail.com">EMAIL →</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer mono">
+  <p>© 2026 YASH AGARWAL · BUILT WITH CHAOS AND CAFFEINE · HYDERABAD → VIT → MUMBAI</p>
+</footer>
+
+<script src="index2.js"></script>
+</body>
+</html>

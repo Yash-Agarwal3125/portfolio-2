@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yash Agarwal — Software Engineer</title>
+<meta name="description" content="Yash Agarwal — software engineer building backend systems and machine learning products. Kafka pipelines, distributed inference, models that ship.">
+<meta name="author" content="Yash Agarwal">
+<meta name="theme-color" content="#F2F1EC">
+<meta property="og:title" content="Yash Agarwal — Software Engineer">
+<meta property="og:description" content="Backend systems and machine learning, built for real-world use.">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index3.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-name" href="#main">YASH AGARWAL</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-resume" href="/assets/resume.pdf" target="_blank" rel="noopener">Resume</a><!-- TODO: resume file not yet in /assets -->
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <p class="micro reveal">SDE / MLE — PLACEMENT 2026 · VIT VELLORE</p>
+    <h1 class="reveal">Backend systems<br>&amp; machine learning<br><em>that ship.</em></h1>
+    <div class="hero-foot reveal">
+      <p class="hero-sub">Yash Agarwal — software engineer. Kafka pipelines, distributed inference, reinforcement learning, and the testing discipline to back it up.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="#work">View work ↓</a>
+        <a class="btn" href="/assets/resume.pdf" target="_blank" rel="noopener">Resume ↗</a><!-- TODO: resume file not yet in /assets -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BIG STAT CALLOUT ============ -->
+  <section class="stat reveal" aria-label="Headline metric">
+    <p class="stat-num">50,000<span>+</span></p>
+    <p class="stat-caption">events per second — real-time Kafka streaming pipelines engineered at <strong>Jio Platforms, Mumbai</strong> (May–July 2026), with replication lag cut 30% via consumer group tuning.</p>
+  </section>
+
+  <!-- ============ TECH MARQUEE (decorative — the categorized stack is section 04) ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>PYTHON</span><span>·</span><span>APACHE KAFKA</span><span>·</span><span>FASTAPI</span><span>·</span><span>DOCKER</span><span>·</span><span>REDIS</span><span>·</span><span>TENSORFLOW</span><span>·</span><span>PYTORCH</span><span>·</span><span>REACT</span><span>·</span><span>POSTGRESQL</span><span>·</span><span>PROMETHEUS</span><span>·</span><span>GRAFANA</span><span>·</span><span>PYTEST</span><span>·</span><span>GITHUB ACTIONS</span><span>·</span><span>SQL</span><span>·</span><span>JAVA</span><span>·</span><span>C++</span><span>·</span>
+      <span>PYTHON</span><span>·</span><span>APACHE KAFKA</span><span>·</span><span>FASTAPI</span><span>·</span><span>DOCKER</span><span>·</span><span>REDIS</span><span>·</span><span>TENSORFLOW</span><span>·</span><span>PYTORCH</span><span>·</span><span>REACT</span><span>·</span><span>POSTGRESQL</span><span>·</span><span>PROMETHEUS</span><span>·</span><span>GRAFANA</span><span>·</span><span>PYTEST</span><span>·</span><span>GITHUB ACTIONS</span><span>·</span><span>SQL</span><span>·</span><span>JAVA</span><span>·</span><span>C++</span><span>·</span>
+    </div>
+  </div>
+
+  <!-- ============ SELECTED WORK ============ -->
+  <section class="section" id="work">
+    <div class="section-head reveal">
+      <h2>Selected work</h2>
+      <span class="section-num" aria-hidden="true">01</span>
+    </div>
+
+    <details class="case reveal">
+      <summary>
+        <span class="case-row">
+          <span class="case-index">01</span>
+          <span class="case-main">
+            <span class="micro">DISTRIBUTED ML SERVING</span>
+            <span class="case-title">Distributed AI Inference Platform</span>
+            <span class="case-line">12 Dockerized microservices, Kafka task routing at 50 req/sec and 50ms p99 — because nobody teaches you what happens when 50 people hit your model endpoint at once.</span>
+            <span class="pills"><span>Python</span><span>FastAPI</span><span>Docker</span><span>Redis</span><span>Kafka</span><span>Prometheus</span><span>Grafana</span></span>
+          </span>
+          <span class="case-cta" aria-hidden="true">Read →</span>
+        </span>
+      </summary>
+      <div class="case-body">
+        <div class="case-cols">
+          <div>
+            <h3 class="micro">PROBLEM</h3>
+            <p>University teaches you to train models. Nobody teaches you what happens when 50 people hit your model endpoint at the same time.</p>
+            <h3 class="micro">BUILT</h3>
+            <p>12 Dockerized microservices. FastAPI for async request queuing, Redis for the cache layer, Kafka for durable task routing. A Q-Learning agent as the scheduler — it learns optimal batching from the system's own behaviour. Circuit breakers, heartbeat monitoring, intelligent worker selection; Prometheus scrapes every service, Grafana visualises everything.</p>
+            <h3 class="micro">THE HARD PART</h3>
+            <p>The Q-Learning scheduler's chicken-and-egg problem: the agent needs to explore to learn, but random actions in a production-adjacent system mean random latency spikes. Plus distributed state races — solved with Redis MULTI/EXEC transactions and careful key namespacing.</p>
+            <h3 class="micro">LEARNED</h3>
+            <p>Distributed systems bugs live in the interactions between components, not the components. Observability before features.</p>
+          </div>
+          <div class="case-side">
+            <p class="micro">METRICS</p>
+            <ul class="metric-list">
+              <li>50 req/sec throughput</li>
+              <li>50ms p99 under load</li>
+              <li>12 microservices</li>
+              <li>Locust load-tested</li>
+            </ul>
+            <a class="case-link" href="https://github.com/Yash-Agarwal3125/AI-Inference-Platform" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="case reveal">
+      <summary>
+        <span class="case-row">
+          <span class="case-index">02</span>
+          <span class="case-main">
+            <span class="micro">CONCURRENCY-SAFE TRANSACTIONS</span>
+            <span class="case-title">IPL-Bhai-Log</span>
+            <span class="case-line">Full-stack sports prediction platform where row-level locking keeps concurrent bets from silently eating each other's wallet updates.</span>
+            <span class="pills"><span>FastAPI</span><span>React</span><span>MySQL</span><span>SQLAlchemy</span><span>JWT</span><span>Alembic</span></span>
+          </span>
+          <span class="case-cta" aria-hidden="true">Read →</span>
+        </span>
+      </summary>
+      <div class="case-body">
+        <div class="case-cols">
+          <div>
+            <h3 class="micro">PROBLEM</h3>
+            <p>Wanted a full-stack project with real engineering problems — not just CRUD. Betting has concurrency, auth, settlement logic.</p>
+            <h3 class="micro">BUILT</h3>
+            <p>FastAPI backend, SQLAlchemy ORM, Alembic migrations, React/Vite frontend, JWT + bcrypt auth, APScheduler syncing live match data. The critical piece: <code>SELECT ... FOR UPDATE</code> row-level locking on concurrent wallet updates.</p>
+            <h3 class="micro">THE HARD PART</h3>
+            <p>Two users bet simultaneously → both reads see the same balance → both writes succeed → one bet silently disappears. Row-level locking fixes it; testing it correctly is the genuinely tricky part.</p>
+          </div>
+          <div class="case-side">
+            <p class="micro">METRICS</p>
+            <ul class="metric-list">
+              <li>Full ACID compliance</li>
+              <li>SlowAPI rate limiting</li>
+              <li>Security tests gate every commit</li>
+              <li>Alembic-managed migrations</li>
+            </ul>
+            <a class="case-link" href="https://github.com/Yash-Agarwal3125/IPL-Bhai-Log" target="_blank" rel="noopener">GitHub ↗</a><!-- TODO: exact repo name unconfirmed per MASTER_CONTENT -->
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="case reveal">
+      <summary>
+        <span class="case-row">
+          <span class="case-index">03</span>
+          <span class="case-main">
+            <span class="micro">REINFORCEMENT LEARNING FROM SCRATCH</span>
+            <span class="case-title">Self-Driving DQN Car</span>
+            <span class="case-line">A DQN agent navigating a Pygame world on 8-ray LiDAR — 98% test-epoch navigation rate after 50 commits of reward-function archaeology.</span>
+            <span class="pills"><span>TensorFlow</span><span>Keras</span><span>Pygame</span><span>DQN</span><span>Google Colab</span></span>
+          </span>
+          <span class="case-cta" aria-hidden="true">Read →</span>
+        </span>
+      </summary>
+      <div class="case-body">
+        <div class="case-cols">
+          <div>
+            <h3 class="micro">PROBLEM</h3>
+            <p>Every RL tutorial starts with CartPole. I wanted to build the environment, the reward function, the architecture — everything from scratch.</p>
+            <h3 class="micro">BUILT</h3>
+            <p>Pygame top-down road simulation, 8 LiDAR rays as state, DQN with a 10,000-transition experience replay buffer and target network. Actions: steer, accelerate, brake. Later experiments moved to D3QN and A3C.</p>
+            <h3 class="micro">THE HARD PART</h3>
+            <p>Reward design took three attempts and three weeks — spin-in-circles, then full-speed-into-corners, then the four-term function that worked. DQNs are brittle, so every hyperparameter run went in a spreadsheet. And a LiDAR floating-point bug let the agent clip through corners — it learned to exploit the bug, then had to relearn after the fix.</p>
+            <h3 class="micro">LEARNED</h3>
+            <p>Reward function design is 80% of the work in RL. Iteration speed beats architecture choices. Log everything.</p>
+          </div>
+          <div class="case-side">
+            <p class="micro">METRICS</p>
+            <ul class="metric-list">
+              <li>98% navigation rate in test epochs</li>
+              <li>DQN → D3QN → A3C progression</li>
+              <li>50 commits over 4 months</li>
+              <li>Colab GPU training</li>
+            </ul>
+            <a class="case-link" href="https://github.com/Yash-Agarwal3125/Neural-Networks-Car-Project" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="case reveal">
+      <summary>
+        <span class="case-row">
+          <span class="case-index">04</span>
+          <span class="case-main">
+            <span class="micro">SELF-HEALING AI PIPELINE</span>
+            <span class="case-title">Placement Mail Tracker</span>
+            <span class="case-line">Gmail → Gemini → Sheets classification pipeline built to survive a flaky AI component — with the tests, CI, and docs to prove it.</span>
+            <span class="pills"><span>Python</span><span>Gemini API</span><span>SQLite</span><span>pytest</span><span>GitHub Actions</span><span>ruff</span></span>
+          </span>
+          <span class="case-cta" aria-hidden="true">Read →</span>
+        </span>
+      </summary>
+      <div class="case-body">
+        <div class="case-cols">
+          <div>
+            <h3 class="micro">PROBLEM</h3>
+            <p>Placement season = 30+ emails/day. Was missing follow-ups, so the entire classification → logging pipeline got automated.</p>
+            <h3 class="micro">BUILT</h3>
+            <p>A modular Python package: Gmail API reads → Gemini classifies (application / interview / rejection / offer) → SQLite stores state → Google Sheets logs. GitHub Actions keeps it running and honest. Ships with <code>.env.example</code> and a <code>USER_MANUAL.md</code>.</p>
+            <h3 class="micro">THE HARD PART</h3>
+            <p>Gemini misclassifies ~5% of the time. The system flags uncertainty for manual review instead of silently filing a rejection under "offer" — building reliable systems around unreliable AI components is the real engineering challenge.</p>
+          </div>
+          <div class="case-side">
+            <p class="micro">METRICS</p>
+            <ul class="metric-list">
+              <li>Full pytest suite</li>
+              <li>GitHub Actions CI</li>
+              <li>ruff linting</li>
+              <li>30+ commits</li>
+            </ul>
+            <p class="case-link is-muted">Repo link pending<span data-todo> [TODO: GitHub URL not listed in MASTER_CONTENT]</span></p>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="case reveal">
+      <summary>
+        <span class="case-row">
+          <span class="case-index">05</span>
+          <span class="case-main">
+            <span class="micro">ML FUNDAMENTALS, NO SHORTCUTS</span>
+            <span class="case-title">Flight Price Predictor</span>
+            <span class="case-line">Linear regression with the gradient descent loop written by hand — no sklearn for the core model — deployed on Render.</span>
+            <span class="pills"><span>Python</span><span>NumPy</span><span>Pandas</span><span>Flask</span><span>Render</span></span>
+          </span>
+          <span class="case-cta" aria-hidden="true">Read →</span>
+        </span>
+      </summary>
+      <div class="case-body">
+        <div class="case-cols">
+          <div>
+            <h3 class="micro">PROBLEM</h3>
+            <p>Everyone imports sklearn. Wanted to understand what linear regression actually does at the mathematical level.</p>
+            <h3 class="micro">THE HARD PART</h3>
+            <p>Learning rate selection without adaptive optimisers. Too high: loss diverges. Too low: convergence takes forever. Manual tuning taught more than any lecture.</p>
+            <p><span data-todo>[TODO: RMSE/R² or other accuracy metric — not stated in MASTER_CONTENT]</span></p>
+          </div>
+          <div class="case-side">
+            <p class="micro">METRICS</p>
+            <ul class="metric-list">
+              <li>NumPy-only core model</li>
+              <li>EDA-heavy preprocessing</li>
+              <li>Deployed on Render</li>
+            </ul>
+            <a class="case-link" href="https://github.com/Yash-Agarwal3125/Flight-Price-Predicter-" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="section" id="process">
+    <div class="section-head reveal">
+      <h2>Process</h2>
+      <span class="section-num" aria-hidden="true">02</span>
+    </div>
+    <ol class="steps">
+      <li class="step reveal">
+        <span class="step-num" aria-hidden="true">01</span>
+        <h3>Understand the problem</h3>
+        <p>Requirements, constraints, edge cases — before any tech gets picked. Every project above starts from a problem statement, not a framework.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step-num" aria-hidden="true">02</span>
+        <h3>Design the architecture</h3>
+        <p>System design, data flow, tradeoffs. Services as contracts: what happens when one fails, when a message arrives twice, when two views of the data disagree.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step-num" aria-hidden="true">03</span>
+        <h3>Build and test</h3>
+        <p>Implementation with the failure modes in mind — row-level locks for concurrent writes, test suites that gate commits, a spreadsheet for every experiment.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step-num" aria-hidden="true">04</span>
+        <h3>Ship and measure</h3>
+        <p>Deploy, instrument, watch. Prometheus and Grafana before features — observability is how you know a change helped instead of quietly making things worse.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section class="section" id="experience">
+    <div class="section-head reveal">
+      <h2>Experience</h2>
+      <span class="section-num" aria-hidden="true">03</span>
+    </div>
+    <ol class="xp">
+      <li class="xp-row reveal">
+        <span class="xp-date">MAY–JUL 2026</span>
+        <div class="xp-body">
+          <h3>Data Engineering Intern — Jio Platforms, Mumbai</h3>
+          <ul>
+            <li>Engineered Kafka-based event streaming pipelines for real-time data replication across 5 topics, processing 50,000+ events/sec in a distributed ingestion architecture.</li>
+            <li>Reduced data replication lag, pipeline downtime, and stale-read rate by 30% through Kafka consumer group tuning and dynamic partition rebalancing.</li>
+            <li>Instrumented pipeline observability with Prometheus and Grafana — real-time alerting on consumer lag across 10 active Kafka streams, mean detection time for throughput degradation down 25%.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="xp-row reveal">
+        <span class="xp-date">JUN–JUL 2025</span>
+        <div class="xp-body">
+          <h3>Software Engineering Intern — Jala Academy (Remote)</h3>
+          <ul>
+            <li>Summer internship focused on software engineering fundamentals and applied development — built and shipped features in a structured team environment during second year of B.Tech.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="xp-row reveal">
+        <span class="xp-date">2023–NOW</span>
+        <div class="xp-body">
+          <h3>B.Tech CSE, AI &amp; ML Specialization — VIT Vellore · CGPA 8.78</h3>
+          <ul>
+            <li>Core coursework in distributed systems, computer architecture, neural networks, and image processing. 5+ production projects across ML, data engineering, and full-stack domains.</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+    <p class="certs reveal"><span class="micro">CERTIFICATIONS — </span>IBM Certified Specialist, Generative AI (2025) · Supervised ML: Regression &amp; Classification, DeepLearning.AI × Stanford (2024) · Advanced Learning Algorithms, DeepLearning.AI × Stanford (2024)</p>
+  </section>
+
+  <!-- ============ STACK ============ -->
+  <section class="section" id="stack">
+    <div class="section-head reveal">
+      <h2>Stack</h2>
+      <span class="section-num" aria-hidden="true">04</span>
+    </div>
+    <dl class="stack reveal">
+      <div class="stack-row"><dt class="micro">LANGUAGES</dt><dd>Python · SQL · Java · C++ · JavaScript (ES6)</dd></div>
+      <div class="stack-row"><dt class="micro">DATA &amp; ML</dt><dd>Pandas · NumPy · Scikit-learn · TensorFlow · Keras · PyTorch · Neural Networks · Reinforcement Learning (DQN) · Generative AI · Apache Kafka · Redis · MySQL · PostgreSQL</dd></div>
+      <div class="stack-row"><dt class="micro">WEB &amp; TESTING</dt><dd>React.js · FastAPI · Flask · Node.js · RESTful APIs · HTML5 · CSS3 · pytest · CI/CD · Unit &amp; Integration Testing</dd></div>
+      <div class="stack-row"><dt class="micro">DEVOPS &amp; TOOLS</dt><dd>Docker · Git · GitHub · GitHub Actions · VS Code · Prometheus · Grafana</dd></div>
+      <div class="stack-row"><dt class="micro">PRACTICES</dt><dd>Agile · SDLC · Event-Driven Architecture</dd></div>
+    </dl>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section contact" id="contact">
+    <div class="section-head reveal">
+      <h2>Contact</h2>
+      <span class="section-num" aria-hidden="true">05</span>
+    </div>
+    <p class="contact-big reveal">Let's build<em>.</em></p>
+    <p class="contact-line reveal">Open to SDE / MLE roles — placement 2026. The fastest way to reach me is email.</p>
+    <div class="hero-ctas reveal">
+      <a class="btn btn-solid" href="mailto:yashagarwal3125@gmail.com">Email ↗</a>
+      <a class="btn" href="https://github.com/Yash-Agarwal3125" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn" href="https://linkedin.com/in/yash-agarwal" target="_blank" rel="noopener">LinkedIn ↗</a><!-- TODO: exact LinkedIn URL unconfirmed per MASTER_CONTENT -->
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-cols">
+    <div class="footer-col">
+      <p class="micro">PROJECTS</p>
+      <a href="#work">AI Inference Platform</a>
+      <a href="#work">IPL-Bhai-Log</a>
+      <a href="#work">Self-Driving DQN Car</a>
+      <a href="#work">Placement Mail Tracker</a>
+      <a href="#work">Flight Price Predictor</a>
+    </div>
+    <div class="footer-col">
+      <p class="micro">EXPERIENCE</p>
+      <a href="#experience">Jio Platforms</a>
+      <a href="#experience">Jala Academy</a>
+      <a href="#experience">VIT Vellore</a>
+      <a href="#process">Process</a>
+    </div>
+    <div class="footer-col">
+      <p class="micro">CONNECT</p>
+      <a href="mailto:yashagarwal3125@gmail.com">Email</a>
+      <a href="https://github.com/Yash-Agarwal3125" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/yash-agarwal" target="_blank" rel="noopener">LinkedIn</a><!-- TODO: exact LinkedIn URL unconfirmed per MASTER_CONTENT -->
+    </div>
+    <div class="footer-col">
+      <p class="micro">RESUME</p>
+      <a href="/assets/resume.pdf" target="_blank" rel="noopener">Download PDF ↗</a><!-- TODO: resume file not yet in /assets -->
+    </div>
+  </div>
+  <p class="footer-line">© 2026 Yash Agarwal · Hyderabad → VIT → Mumbai</p>
+</footer>
+
+<script src="index3.js"></script>
+</body>
+</html>
