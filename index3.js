@@ -14,6 +14,26 @@ if (isDevHost) document.documentElement.classList.add('dev-mode');
 // everything renders in its final visible state.
 if (!reduceMotion) document.documentElement.classList.add('motion');
 
+// --- nav scrollspy: highlight the section currently in view ---
+if ('IntersectionObserver' in window) {
+  const navLinks = [...document.querySelectorAll('.nav-links a[href^="#"]')];
+  const byId = Object.fromEntries(navLinks.map((a) => [a.hash.slice(1), a]));
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const link = byId[entry.target.id];
+      if (!link) return;
+      if (entry.isIntersecting) {
+        navLinks.forEach((a) => a.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  navLinks.forEach((a) => {
+    const section = document.getElementById(a.hash.slice(1));
+    if (section) spy.observe(section);
+  });
+}
+
 // --- section reveals, once each ---
 if (!reduceMotion && 'IntersectionObserver' in window) {
   const io = new IntersectionObserver((entries) => {

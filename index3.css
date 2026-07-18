@@ -92,7 +92,7 @@ html.dev-mode [data-todo] {
   transition: color 150ms var(--ease);
   white-space: nowrap;
 }
-.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover, .nav-links a.active { color: var(--ink); }
 .nav-resume {
   color: var(--paper) !important;
   background: var(--ink);
@@ -107,7 +107,7 @@ html.dev-mode [data-todo] {
 }
 
 /* ---------- layout primitives ---------- */
-.section, .hero, .stat {
+.section, .hero {
   max-width: var(--wrap);
   margin: 0 auto;
   padding: var(--s7) var(--s3) var(--s6);
@@ -139,19 +139,27 @@ html.dev-mode [data-todo] {
 /* ---------- hero ---------- */
 .hero { padding-top: 150px; }
 .hero .micro { margin-bottom: var(--s3); }
+/* Name is the page's biggest element by design — every other display size
+   (stat numeral, contact sign-off, section heads) caps below its 126px. */
 h1 {
-  font-size: clamp(38px, 8.5vw, 104px);
+  font-size: clamp(36px, 8.3vw, 126px);
   font-weight: 900;
   line-height: 0.98;
   letter-spacing: -0.03em;
   text-transform: uppercase;
-  margin: 0 0 var(--s5);
-}
-/* The desktop line structure can't fit at 375px — let the text wrap naturally there */
-@media (max-width: 639px) {
-  h1 br { display: none; }
+  margin: 0 0 var(--s2);
+  white-space: nowrap;
 }
 h1 em { font-style: normal; color: var(--accent); }
+.hero-headline {
+  font-size: clamp(22px, 3.2vw, 40px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0 0 var(--s5);
+}
+.hero-headline em { font-style: normal; color: var(--accent); }
 .hero-foot {
   display: flex;
   justify-content: space-between;
@@ -174,32 +182,6 @@ h1 em { font-style: normal; color: var(--accent); }
 .btn:hover { background: var(--ink); color: var(--paper); }
 .btn-solid { background: var(--ink); color: var(--paper); }
 .btn-solid:hover { background: var(--accent); border-color: var(--accent); }
-
-/* ---------- stat callout ---------- */
-.stat {
-  border-top: 2px solid var(--line);
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--s5);
-  align-items: end;
-}
-.stat-num {
-  font-size: clamp(72px, 13vw, 180px);
-  font-weight: 900;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-  margin: 0;
-}
-.stat-num span { color: var(--accent); }
-.stat-caption {
-  max-width: 44ch;
-  margin: 0 0 10px;
-  color: var(--muted);
-}
-.stat-caption strong { color: var(--ink); }
-@media (max-width: 900px) {
-  .stat { grid-template-columns: 1fr; gap: var(--s3); }
-}
 
 /* ---------- marquee (decorative) ---------- */
 .marquee {
@@ -410,9 +392,16 @@ html.motion .case[open] .case-body { animation: bodyIn 250ms var(--ease); }
 .stack-row dd { margin: 0; color: var(--ink); font-weight: 400; }
 @media (max-width: 640px) { .stack-row { grid-template-columns: 1fr; gap: 4px; } }
 
+/* ---------- writing (reuses .case; single prose column) ---------- */
+.post-body {
+  max-width: 68ch;
+  padding-left: calc(80px + var(--s3)); /* aligns with title column */
+}
+@media (max-width: 900px) { .post-body { padding-left: 0; } }
+
 /* ---------- contact ---------- */
 .contact-big {
-  font-size: clamp(42px, 11vw, 140px);
+  font-size: clamp(42px, 9vw, 118px);
   font-weight: 900;
   line-height: 0.95;
   letter-spacing: -0.03em;
@@ -421,6 +410,7 @@ html.motion .case[open] .case-body { animation: bodyIn 250ms var(--ease); }
 }
 .contact-big em { font-style: normal; color: var(--accent); }
 .contact-line { color: var(--muted); max-width: 52ch; margin: 0 0 var(--s4); }
+.contact-now { color: var(--muted); margin: 0 0 var(--s4); }
 
 /* ---------- footer ---------- */
 .footer {
@@ -438,6 +428,7 @@ html.motion .case[open] .case-body { animation: bodyIn 250ms var(--ease); }
 }
 .footer-col { display: flex; flex-direction: column; gap: var(--s1); }
 .footer-col .micro { margin-bottom: var(--s1); }
+.footer-col a + .micro { margin-top: var(--s3); }
 .footer-col a {
   text-decoration: none;
   color: rgba(242, 241, 236, 0.75);

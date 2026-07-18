@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="4" fill="#141414"/>
+  <text x="31" y="43" font-family="Archivo, 'Arial Black', system-ui, sans-serif" font-weight="900" font-size="28" fill="#F2F1EC" text-anchor="middle">YA</text>
+  <circle cx="51" cy="51" r="4" fill="#E8490F"/>
+</svg>
